@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robin Dela Cruz | Full-Stack Digital Marketer</title>
+<meta name="description" content="One marketer, the whole stack. SEO, paid ads, email, UI/UX and eCommerce that turned brands into category leaders. Book a free strategy call.">
+<meta property="og:title" content="Robin Dela Cruz | Full-Stack Digital Marketer">
+<meta property="og:description" content="300% month-over-month growth. 10,000+ creator partnerships. Six-figure monthly sales. See how, then book a call.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preload" as="image" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#08070f;
+  --bg2:#0d0b1a;
+  --ink:#f4f2ff;
+  --muted:#a9a3c2;
+  --violet:#8b5cf6;
+  --violet-2:#a78bfa;
+  --violet-soft:#c4b5fd;
+  --glass:rgba(255,255,255,.055);
+  --glass-strong:rgba(255,255,255,.09);
+  --stroke:rgba(255,255,255,.12);
+  --radius:20px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  overflow-x:hidden;
+  line-height:1.6;
+}
+h1,h2,h3,.wordmark{font-family:'Sora',sans-serif}
+::selection{background:var(--violet);color:#fff}
+
+/* ---------- loading screen ---------- */
+#loader{
+  position:fixed;inset:0;z-index:9999;background:var(--bg);
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity .55s ease,visibility .55s;
+}
+#loader.done{opacity:0;visibility:hidden;pointer-events:none}
+.loader-mark{position:relative;width:min(300px,58vw)}
+.loader-mark img{width:100%;display:block}
+.loader-mark .base{opacity:.14}
+.loader-mark .reveal{position:absolute;inset:0 auto 0 0;width:0%;overflow:hidden;animation:logofill 1.9s cubic-bezier(.4,0,.2,1) forwards}
+.loader-mark .reveal img{width:min(300px,58vw);max-width:none}
+@keyframes logofill{to{width:100%}}
+
+/* ---------- cursor glow ---------- */
+#glow{
+  position:fixed;inset:0;pointer-events:none;z-index:1;
+  background:radial-gradient(600px circle at var(--mx,50%) var(--my,30%),rgba(139,92,246,.10),transparent 55%);
+  transition:background .15s;
+}
+
+/* ---------- ambient orbs ---------- */
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5;pointer-events:none;animation:drift 18s ease-in-out infinite alternate}
+.orb.a{width:480px;height:480px;background:#6d28d9;top:-120px;left:-120px}
+.orb.b{width:380px;height:380px;background:#4c1d95;bottom:-80px;right:-60px;animation-delay:-9s}
+@keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(60px,40px) scale(1.15)}}
+
+/* ---------- nav ---------- */
+nav{
+  position:fixed;top:14px;left:50%;transform:translateX(-50%);
+  width:min(1100px,calc(100% - 28px));z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 22px;border-radius:18px;
+  background:rgba(13,11,26,.55);
+  backdrop-filter:blur(18px) saturate(160%);
+  -webkit-backdrop-filter:blur(18px) saturate(160%);
+  border:1px solid var(--stroke);
+  transition:box-shadow .3s,background .3s;
+}
+nav.scrolled{background:rgba(13,11,26,.82);box-shadow:0 12px 40px rgba(0,0,0,.45)}
+.wordmark{display:flex;align-items:center;text-decoration:none}
+.nav-logo{height:30px;width:auto;display:block}
+.nav-links{display:flex;gap:26px;list-style:none;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.92rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:13px 26px;border-radius:14px;border:none;cursor:pointer;
+  font-family:'Sora',sans-serif;font-weight:700;font-size:.95rem;
+  text-decoration:none;position:relative;overflow:hidden;
+  transition:transform .25s cubic-bezier(.2,.9,.3,1.4),box-shadow .25s;
+  will-change:transform;
+}
+.btn-primary{
+  background:linear-gradient(135deg,#7c3aed,#a855f7 55%,#c084fc);
+  color:#fff;box-shadow:0 8px 30px rgba(139,92,246,.35);
+}
+.btn-primary:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 14px 44px rgba(139,92,246,.55)}
+.btn-primary::after{
+  content:'';position:absolute;top:0;left:-80%;width:50%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);
+  transform:skewX(-20deg);animation:sheen 3.4s infinite;
+}
+@keyframes sheen{0%,60%{left:-80%}100%{left:160%}}
+.btn-ghost{
+  background:var(--glass);color:var(--ink);
+  border:1px solid var(--stroke);
+  backdrop-filter:blur(10px);
+}
+.btn-ghost:hover{background:var(--glass-strong);transform:translateY(-2px)}
+.nav-cta{padding:10px 20px;font-size:.85rem}
+#burger{display:none;background:none;border:none;color:var(--ink);font-size:1.5rem;cursor:pointer}
+
+/* ---------- hero ---------- */
+header{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.hero-media{position:absolute;inset:0;z-index:0}
+.hero-media video,.hero-media img{width:100%;height:100%;object-fit:cover;filter:brightness(.38) saturate(.8)}
+.hero-media::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,7,15,.25) 0%,rgba(8,7,15,.55) 62%,var(--bg) 100%)}
+.hero-inner{position:relative;z-index:2;max-width:900px;padding:120px 24px 80px}
+h1{font-size:clamp(2.4rem,6vw,4.3rem);font-weight:800;line-height:1.08;letter-spacing:-1.5px}
+h1 .grad{background:linear-gradient(120deg,#c4b5fd,#8b5cf6 45%,#e879f9);-webkit-background-clip:text;background-clip:text;color:transparent}
+#swap{display:inline-block;min-width:1ch;border-bottom:3px solid var(--violet);transition:opacity .35s,transform .35s}
+#swap.out{opacity:0;transform:translateY(12px)}
+.hero-sub{margin:26px auto 38px;max-width:640px;color:var(--muted);font-size:clamp(1rem,1.6vw,1.2rem)}
+.hero-ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.hero-socials{justify-content:center;margin-top:26px}
+.hero-stats{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:44px}
+.chip{
+  padding:12px 20px;border-radius:16px;
+  background:var(--glass);border:1px solid var(--stroke);
+  backdrop-filter:blur(14px);font-size:.9rem;color:var(--ink);
+}
+.chip b{color:var(--violet-soft)}
+.scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;color:var(--muted);font-size:1.4rem;animation:bob 2s infinite}
+@keyframes bob{50%{transform:translate(-50%,8px)}}
+
+/* ---------- sections ---------- */
+section{position:relative;padding:110px 24px;max-width:1160px;margin:0 auto}
+.kicker{color:var(--violet-2);font-weight:700;font-size:.85rem;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:14px}
+h2{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:800;letter-spacing:-.8px;line-height:1.15;margin-bottom:18px}
+.lede{color:var(--muted);max-width:620px;font-size:1.05rem}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
+.rv.on{opacity:1;transform:none}
+
+/* ---------- marquee ---------- */
+.marquee-wrap{padding:30px 0 10px;max-width:100%;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee{display:flex;gap:18px;width:max-content;animation:scrollx 30s linear infinite}
+.marquee-wrap:hover .marquee{animation-play-state:paused}
+@keyframes scrollx{to{transform:translateX(-50%)}}
+.logo-pill{
+  display:flex;align-items:center;gap:10px;white-space:nowrap;
+  padding:14px 26px;border-radius:16px;
+  background:var(--glass);border:1px solid var(--stroke);
+  color:#ded9f2;font-weight:600;font-size:1rem;font-family:'Sora',sans-serif;
+}
+.logo-pill svg,.logo-pill img{width:22px;height:22px;flex:none}
+
+/* ---------- stats ---------- */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:50px}
+.stat{
+  padding:34px 28px;border-radius:var(--radius);text-align:center;
+  background:var(--glass);border:1px solid var(--stroke);
+  backdrop-filter:blur(16px);position:relative;overflow:hidden;
+  transition:transform .3s,border-color .3s;
+}
+.stat:hover{transform:translateY(-6px);border-color:rgba(167,139,250,.45)}
+.stat .num{font-family:'Sora',sans-serif;font-size:2.6rem;font-weight:800;background:linear-gradient(120deg,#ede9fe,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .lbl{color:var(--muted);font-size:.92rem;margin-top:6px}
+
+/* ---------- timeline ---------- */
+.timeline{margin-top:60px;position:relative;padding-left:34px}
+.timeline::before{content:'';position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--violet),rgba(139,92,246,.05))}
+.t-item{position:relative;margin-bottom:44px}
+.t-item::before{
+  content:'';position:absolute;left:-34px;top:6px;width:18px;height:18px;border-radius:50%;
+  background:var(--bg2);border:3px solid var(--violet);box-shadow:0 0 16px rgba(139,92,246,.6);
+}
+.t-item .when{color:var(--violet-2);font-weight:700;font-size:.85rem;letter-spacing:1.5px}
+.t-item h3{font-size:1.35rem;margin:6px 0 4px}
+.t-item .role{color:var(--violet-soft);font-size:.92rem;font-weight:600;margin-bottom:10px}
+.t-item p{color:var(--muted);max-width:640px}
+
+/* ---------- case studies ---------- */
+.cases{display:grid;gap:26px;margin-top:56px}
+.case{
+  border-radius:26px;overflow:hidden;cursor:pointer;
+  background:var(--glass);border:1px solid var(--stroke);
+  backdrop-filter:blur(18px);
+  transition:transform .35s,border-color .35s,box-shadow .35s;
+}
+.case:hover{transform:translateY(-4px);border-color:rgba(167,139,250,.5);box-shadow:0 24px 60px rgba(76,29,149,.35)}
+.case-top{display:grid;grid-template-columns:340px 1fr;gap:0;align-items:stretch}
+.case-img{position:relative;min-height:240px;overflow:hidden}
+.case-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+.case:hover .case-img img{transform:scale(1.07)}
+.case-body{padding:30px 34px}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tag{font-size:.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 12px;border-radius:999px;background:rgba(139,92,246,.16);color:var(--violet-soft);border:1px solid rgba(139,92,246,.35)}
+.case h3{font-size:1.45rem;letter-spacing:-.4px;margin-bottom:8px}
+.case .sub{color:var(--muted);font-size:.98rem}
+.case .headline-stat{margin-top:16px;font-family:'Sora',sans-serif;font-weight:800;font-size:1.05rem;color:var(--violet-soft)}
+.case-more{max-height:0;overflow:hidden;transition:max-height .6s cubic-bezier(.2,.7,.3,1)}
+.case.open .case-more{max-height:900px}
+.case-more-inner{display:grid;grid-template-columns:1fr 1fr;gap:26px;padding:0 34px 32px;border-top:1px dashed rgba(255,255,255,.12);margin-top:4px;padding-top:24px}
+.case-more h4{color:var(--violet-2);font-size:.82rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.case-more ul{list-style:none}
+.case-more li{color:var(--muted);font-size:.94rem;margin-bottom:9px;padding-left:20px;position:relative}
+.case-more li::before{content:'→';position:absolute;left:0;color:var(--violet)}
+.expand-hint{display:flex;align-items:center;gap:8px;color:var(--violet-2);font-size:.85rem;font-weight:600;margin-top:16px}
+.expand-hint svg{transition:transform .4s}
+.case.open .expand-hint svg{transform:rotate(180deg)}
+
+/* ---------- services ---------- */
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:56px}
+.svc{
+  position:relative;padding:32px 28px;border-radius:var(--radius);
+  background:var(--glass);border:1px solid var(--stroke);
+  backdrop-filter:blur(16px);overflow:hidden;
+  transition:transform .3s,border-color .3s;
+  display:flex;flex-direction:column;
+}
+.svc::before{
+  content:'';position:absolute;inset:0;opacity:0;transition:opacity .4s;pointer-events:none;
+  background:radial-gradient(420px circle at var(--px,50%) var(--py,50%),rgba(139,92,246,.16),transparent 65%);
+}
+.svc:hover::before{opacity:1}
+.svc:hover{transform:translateY(-6px);border-color:rgba(167,139,250,.45)}
+.svc .ico{
+  width:52px;height:52px;border-radius:14px;display:grid;place-items:center;margin-bottom:18px;
+  background:linear-gradient(135deg,rgba(139,92,246,.3),rgba(139,92,246,.08));
+  border:1px solid rgba(167,139,250,.35);font-size:1.4rem;
+}
+.svc h3{font-size:1.12rem;margin-bottom:8px}
+.svc p{color:var(--muted);font-size:.92rem}
+.svc-link{
+  position:relative;z-index:1;margin-top:auto;padding-top:18px;
+  display:inline-flex;align-items:center;gap:6px;align-self:flex-start;
+  color:var(--violet-2);font-weight:600;font-size:.88rem;text-decoration:none;
+  transition:color .2s;
+}
+.svc-link:hover{color:var(--violet-soft);text-decoration:underline}
+
+/* ---------- about ---------- */
+.about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:30px;margin-top:50px;align-items:start}
+.glass-panel{
+  padding:36px;border-radius:26px;
+  background:var(--glass);border:1px solid var(--stroke);
+  backdrop-filter:blur(18px);
+}
+.glass-panel p{color:var(--muted);margin-bottom:16px}
+.glass-panel p:last-child{margin-bottom:0}
+.fact-list{display:grid;gap:14px}
+.fact{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  padding:16px 20px;border-radius:16px;
+  background:var(--glass);border:1px solid var(--stroke);backdrop-filter:blur(14px);
+  transition:transform .25s,border-color .25s;
+}
+.fact:hover{transform:translateX(6px);border-color:rgba(167,139,250,.4)}
+.fact .k{color:var(--muted);font-size:.85rem}
+.fact .v{font-weight:700;font-family:'Sora',sans-serif;color:var(--violet-soft)}
+
+/* ---------- CTA ---------- */
+.cta-panel{
+  position:relative;text-align:center;padding:80px 34px;border-radius:32px;overflow:hidden;
+  background:linear-gradient(160deg,rgba(139,92,246,.16),rgba(13,11,26,.6) 60%);
+  border:1px solid rgba(167,139,250,.35);
+  backdrop-filter:blur(20px);
+}
+.cta-panel h2{margin-bottom:14px}
+.cta-panel .lede{margin:0 auto 36px}
+.availability{margin-top:26px;font-size:.88rem;color:var(--muted)}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid rgba(255,255,255,.08);padding:44px 24px;max-width:1160px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+footer .copy{color:var(--muted);font-size:.88rem}
+.socials{display:flex;gap:12px;flex-wrap:wrap}
+.socials a{
+  width:42px;height:42px;border-radius:12px;display:grid;place-items:center;
+  background:var(--glass);border:1px solid var(--stroke);color:var(--muted);
+  transition:transform .25s,color .25s,border-color .25s;
+}
+.socials a:hover{transform:translateY(-4px);color:#fff;border-color:var(--violet)}
+.socials svg{width:19px;height:19px;fill:currentColor}
+
+/* ---------- responsive ---------- */
+@media (max-width:860px){
+  .nav-links{
+    position:absolute;top:calc(100% + 10px);left:0;right:0;
+    flex-direction:column;padding:22px;border-radius:18px;gap:18px;
+    background:rgba(13,11,26,.95);border:1px solid var(--stroke);backdrop-filter:blur(20px);
+    display:none;
+  }
+  .nav-links.open{display:flex}
+  #burger{display:block}
+  .case-top{grid-template-columns:1fr}
+  .case-img{min-height:200px}
+  .case-more-inner{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr}
+  section{padding:80px 20px}
+  .nav-logo{height:26px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001s!important;transition-duration:.001s!important}
+  #loader{display:none}
+}
+</style>
+</head>
+<body>
+<div id="loader" aria-hidden="true">
+  <div class="loader-mark">
+    <img class="base" src="logo.png" alt="">
+    <div class="reveal"><img src="logo.png" alt=""></div>
+  </div>
+</div>
+<div id="glow"></div>
+<nav id="nav">
+  <a class="wordmark" href="#top" aria-label="Robin Dela Cruz home"><img class="nav-logo" src="logo.png" alt="Robin Dela Cruz"></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Experience</a></li>
+    <li><a href="#cases">Case Studies</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:14px">
+    <a class="btn btn-primary nav-cta" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1DVFuc8grUuOy96ow30lNi466Ley-ar6yIovcsVH6v-pXDF1p9wipaoMJA8tpPKfVD1444UMJH" target="_blank" rel="noopener">Book a call</a>
+    <button id="burger" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="hero-media">
+    <video autoplay muted loop playsinline poster="hero-poster.jpg" onerror="this.style.display='none'">
+      <source src="4b6025fd68280ca0bb8836d9f3ac9cbd.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="orb a"></div>
+  <div class="orb b"></div>
+  <div class="hero-inner">
+    <h1 class="rv">Marketing<br><span class="grad">browsers</span> into <span id="swap">buyers</span></h1>
+    <p class="hero-sub rv">I'm Robin Dela Cruz, one specialist covering the full stack: SEO, paid ads, email, UI/UX and eCommerce. I've grown brands to six-figure months and category leadership. Yours could be next.</p>
+    <div class="hero-ctas rv">
+      <a class="btn btn-primary" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1DVFuc8grUuOy96ow30lNi466Ley-ar6yIovcsVH6v-pXDF1p9wipaoMJA8tpPKfVD1444UMJH" target="_blank" rel="noopener">Book a free strategy call →</a>
+      <a class="btn btn-ghost" href="#cases">See the results</a>
+    </div>
+    <div class="socials hero-socials rv">
+      <a href="https://www.facebook.com/robinbdc5/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.09 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.7 4.53-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.09 24 18.1 24 12.07z"/></svg></a>
+      <a href="https://instagram.com/robindcc5" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98 1.28.06 1.69.07 4.95.07s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95C23.73 2.7 21.31.27 16.95.07 15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.15A4 4 0 1 1 16 12a4 4 0 0 1-4 3.99zm6.4-11.85a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44z"/></svg></a>
+      <a href="https://x.com/robinbdlcrz" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.21-6.82-5.97 6.82H1.67l7.73-8.84L1.25 2.25h6.83l4.71 6.23 5.45-6.23zm-1.16 17.52h1.83L7.08 4.13H5.12l11.96 15.64z"/></svg></a>
+      <a href="https://www.linkedin.com/in/robin-dela-cruz/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.02 8h4.96V24H.02V8zm7.98 0h4.76v2.2h.07c.66-1.25 2.28-2.57 4.7-2.57 5.02 0 5.95 3.3 5.95 7.6V24h-4.96v-7.7c0-1.84-.03-4.2-2.56-4.2-2.56 0-2.95 2-2.95 4.06V24H8V8z"/></svg></a>
+      <a href="https://github.com/robindlcrz" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.04-.02-2.04-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .11-.78.42-1.31.76-1.61-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.82 1.1.82 2.22 0 1.61-.02 2.9-.02 3.29 0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+    </div>
+    <div class="hero-stats rv">
+      <div class="chip"><b>300%</b> month-over-month growth</div>
+      <div class="chip"><b>10,000+</b> creator partnerships</div>
+      <div class="chip"><b>8 years</b> across the full stack</div>
+    </div>
+  </div>
+  <div class="scroll-hint">↓</div>
+</header>
+
+<div class="marquee-wrap rv">
+  <div class="marquee" id="marquee">
+    <div class="logo-pill"><img src="https://cdn.simpleicons.org/meta/a78bfa" alt="" width="22" height="22" loading="lazy" onerror="this.style.display='none'">Meta Ads</div>
+    <div class="logo-pill"><img src="https://cdn.simpleicons.org/googleads/a78bfa" alt="" width="22" height="22" loading="lazy" onerror="this.style.display='none'">Google Ads</div>
+    <div class="logo-pill"><img src="https://cdn.simpleicons.org/shopify/a78bfa" alt="" width="22" height="22" loading="lazy" onerror="this.style.display='none'">Shopify</div>
+    <div class="logo-pill"><svg viewBox="0 0 24 24"><path fill="#a78bfa" d="M4 3h16.2a.8.8 0 0 1 .66 1.25L15.6 12l5.26 7.75A.8.8 0 0 1 20.2 21H4V3z"/></svg>Klaviyo</div>
+    <div class="logo-pill"><svg viewBox="0 0 24 24"><path fill="#a78bfa" d="M4 20v-5h3v5H4Zm6.5 0V9h3v11h-3ZM17 20V4h3v16h-3Z"/><path d="m4 11 6.5-4 4 2L20 4" stroke="#c4b5fd" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".9"/></svg>GoHighLevel</div>
+    <div class="logo-pill"><img src="https://cdn.simpleicons.org/figma/a78bfa" alt="" width="22" height="22" loading="lazy" onerror="this.style.display='none'">Figma</div>
+    <div class="logo-pill"><svg viewBox="0 0 24 24"><path fill="#a78bfa" d="M8.5 6c-3 0-5.5 2.7-5.5 6s2.5 6 5.5 6c1.8 0 3.3-.9 4.3-2.4-1-.5-1.7-1.3-2.1-2.2-.5.9-1.3 1.6-2.2 1.6-1.4 0-2.5-1.3-2.5-3s1.1-3 2.5-3c.9 0 1.7.7 2.2 1.6.4-.9 1.1-1.7 2.1-2.2C11.8 6.9 10.3 6 8.5 6Zm7 0c-1.8 0-3.3.9-4.3 2.4 1 .5 1.7 1.3 2.1 2.2.5-.9 1.3-1.6 2.2-1.6 1.4 0 2.5 1.3 2.5 3s-1.1 3-2.5 3c-.9 0-1.7-.7-2.2-1.6-.4.9-1.1 1.7-2.1 2.2 1 1.5 2.5 2.4 4.3 2.4 3 0 5.5-2.7 5.5-6s-2.5-6-5.5-6Z"/></svg>Adobe CC</div>
+    <div class="logo-pill"><img src="https://cdn.simpleicons.org/semrush/a78bfa" alt="" width="22" height="22" loading="lazy" onerror="this.style.display='none'">Semrush</div>
+    <div class="logo-pill"><img src="https://cdn.simpleicons.org/mailchimp/a78bfa" alt="" width="22" height="22" loading="lazy" onerror="this.style.display='none'">Mailchimp</div>
+    <div class="logo-pill"><img src="https://cdn.simpleicons.org/hootsuite/a78bfa" alt="" width="22" height="22" loading="lazy" onerror="this.style.display='none'">Hootsuite</div>
+  </div>
+</div>
+
+<section id="results">
+  <p class="kicker rv">The numbers first</p>
+  <h2 class="rv">Proof beats promises</h2>
+  <p class="lede rv">Every engagement is measured. Here's what full-stack marketing has delivered for the brands I've worked with.</p>
+  <div class="stats">
+    <div class="stat rv"><div class="num"><span class="count" data-to="300">0</span>%</div><div class="lbl">Month-over-month sales growth, 2020–2022</div></div>
+    <div class="stat rv"><div class="num"><span class="count" data-to="10">0</span>k+</div><div class="lbl">High-tier creators engaged across North America</div></div>
+    <div class="stat rv"><div class="num"><span class="count" data-to="80">0</span>%</div><div class="lbl">Influencer deal close rate</div></div>
+    <div class="stat rv"><div class="num">$<span class="count" data-to="6">0</span>-fig</div><div class="lbl">Monthly revenue under my campaigns</div></div>
+  </div>
+</section>
+
+<section id="cases">
+  <p class="kicker rv">Case studies</p>
+  <h2 class="rv">Brands I've helped scale</h2>
+  <p class="lede rv">Four different industries, one playbook: find the constraint, fix the foundation, then pour fuel on what works. Click any card for the full story.</p>
+  <div class="cases">
+
+    <article class="case rv">
+      <div class="case-top">
+        <div class="case-img"><img src="Milano.jpg" alt="Milano Di Rouge online store" loading="lazy"></div>
+        <div class="case-body">
+          <div class="tags"><span class="tag">B2C</span><span class="tag">Luxury</span><span class="tag">eCommerce</span></div>
+          <h3>Milano Di Rouge: AI-powered creative for a cult streetwear brand</h3>
+          <p class="sub">A luxury streetwear label with 644K Instagram followers, founded by Milan Harris (1.3M followers). Since December 2025 I've owned their creative production, technical SEO and email retention.</p>
+          <div class="headline-stat">↗ Premium AI creative at scale · faster Shopify storefront · email flows driving revenue</div>
+          <div class="expand-hint">Full story <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+        </div>
+      </div>
+      <div class="case-more"><div class="case-more-inner">
+        <div><h4>What I did</h4><ul>
+          <li>Produced premium product and lifestyle imagery with Photoshop and Gemini, turning modern AI into a scalable creative pipeline for marketing.</li>
+          <li>Ran full technical SEO and website audits on their Shopify store, front end and back end, to keep performance at its best.</li>
+          <li>Built multiple high-converting Klaviyo email templates and campaigns, and reviewed every automated flow end to end.</li>
+        </ul></div>
+        <div><h4>What it delivered</h4><ul>
+          <li>A deep library of on-brand marketing assets, produced in days instead of weeks.</li>
+          <li>A cleaner, faster storefront that serves customers and search engines alike.</li>
+          <li>Automated email flows that now drive a meaningful share of total revenue.</li>
+        </ul></div>
+      </div></div>
+    </article>
+
+    <article class="case rv">
+      <div class="case-top">
+        <div class="case-img"><img src="anthrodesk-photo.png" onerror="this.onerror=null;this.src='https://robindc.com/_assets/media/9687da23d4a290ee919724b5ef75369e.png'" alt="AnthroDesk standing desk setup" loading="lazy"></div>
+        <div class="case-body">
+          <div class="tags"><span class="tag">B2B</span><span class="tag">B2C</span><span class="tag">eCommerce</span></div>
+          <h3>AnthroDesk: from Canadian upstart to category leader</h3>
+          <p class="sub">An ergonomics brand with a small budget, an unreliable Magento store, and a crowded market. We turned creators into a marketing engine and rebuilt the foundation.</p>
+          <div class="headline-stat">↗ 300% month-over-month growth · #1 in Canada · U.S. expansion</div>
+          <div class="expand-hint">Full story <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+        </div>
+      </div>
+      <div class="case-more"><div class="case-more-inner">
+        <div><h4>What I did</h4><ul>
+          <li>Onboarded hundreds of YouTube, blog and social creators, trading free products for authentic reviews. A zero ad-spend growth engine.</li>
+          <li>Recycled that creator content into backlinks, compounding organic rankings.</li>
+          <li>Migrated the store from Magento to Shopify: no more downtime, clean inventory management.</li>
+        </ul></div>
+        <div><h4>What it delivered</h4><ul>
+          <li>300% month-over-month sales growth through 2020–2022's remote-work boom.</li>
+          <li>Category leadership in Canada and real market share in the U.S.</li>
+          <li>Promotion and SEO from the same budget, so every dollar worked twice.</li>
+        </ul></div>
+      </div></div>
+    </article>
+
+    <article class="case rv">
+      <div class="case-top">
+        <div class="case-img"><img src="alice-headband.jpg" onerror="this.onerror=null;this.src='https://robindc.com/_assets/media/30ff9df219a9e302251e5a309e95eb81.jpg'" alt="Alice in LaLaLand crystal headband" loading="lazy"></div>
+        <div class="case-body">
+          <div class="tags"><span class="tag">B2C</span><span class="tag">eCommerce</span><span class="tag">Luxury</span></div>
+          <h3>Alice in LaLaLand: a luxury storefront rebuilt for scale</h3>
+          <p class="sub">Artisan headbands deserved better than a Wix template. A platform migration and a unified marketing stack gave this luxury brand room to grow.</p>
+          <div class="headline-stat">↗ Smoother checkout · more organic traffic · one connected funnel</div>
+          <div class="expand-hint">Full story <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+        </div>
+      </div>
+      <div class="case-more"><div class="case-more-inner">
+        <div><h4>What I did</h4><ul>
+          <li>Migrated Wix → Shopify for full design control and scalability.</li>
+          <li>Wired email automation, Google Ads and analytics into one funnel.</li>
+          <li>Restructured site architecture and product pages for search.</li>
+          <li>Streamlined inventory and fulfillment with Shopify's native tools.</li>
+        </ul></div>
+        <div><h4>What it delivered</h4><ul>
+          <li>Noticeably less friction from product page to purchase.</li>
+          <li>Qualified organic traffic that keeps compounding.</li>
+          <li>Marketing infrastructure that supports growth instead of fighting it.</li>
+        </ul></div>
+      </div></div>
+    </article>
+
+    <article class="case rv">
+      <div class="case-top">
+        <div class="case-img"><img src="ferns-photo.png" onerror="this.onerror=null;this.src='https://robindc.com/_assets/media/dd4c22740a2c550fab46267f326f6787.png'" alt="The Ferns guesthouse pool" loading="lazy"></div>
+        <div class="case-body">
+          <div class="tags"><span class="tag">B2C</span><span class="tag">Hospitality</span><span class="tag">Branding</span></div>
+          <h3>The Ferns: an identity that earns trust on sight</h3>
+          <p class="sub">In trust-driven industries, presentation is the pitch. A full redesign and brand system took The Ferns from inconsistent to instantly credible.</p>
+          <div class="headline-stat">↗ Unified brand system · credible digital presence · lead-gen ready</div>
+          <div class="expand-hint">Full story <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+        </div>
+      </div>
+      <div class="case-more"><div class="case-more-inner">
+        <div><h4>What I did</h4><ul>
+          <li>Redesigned the website around the expectations of their target guests.</li>
+          <li>Built complete brand guidelines: typography, palette, logo standards.</li>
+          <li>Set visual consistency rules for every marketing touchpoint.</li>
+        </ul></div>
+        <div><h4>What it delivered</h4><ul>
+          <li>A professional presence that builds trust before the first inquiry.</li>
+          <li>A team that can execute marketing consistently without oversight.</li>
+          <li>A solid foundation for systematic client acquisition.</li>
+        </ul></div>
+      </div></div>
+    </article>
+
+  </div>
+</section>
+
+<section id="work">
+  <p class="kicker rv">Experience</p>
+  <h2 class="rv">Eight years, every seat at the table</h2>
+  <p class="lede rv">Designer, director, growth marketer. I've owned the strategy and shipped the work.</p>
+  <div class="timeline">
+    <div class="t-item rv">
+      <div class="when">2026 – PRESENT</div>
+      <h3>Sals3 &amp; Anything Supplies</h3>
+      <div class="role">Head of Marketing · Australia</div>
+      <p>Leading marketing across two Australian companies: Sals3 (B2C) and Anything Supplies (B2B). One strategy, two very different funnels, both accountable to revenue.</p>
+    </div>
+    <div class="t-item rv">
+      <div class="when">2025</div>
+      <h3>Freelance</h3>
+      <div class="role">Website Developer</div>
+      <p>Designed and shipped conversion-focused websites for clients, from first wireframe to live deployment.</p>
+    </div>
+    <div class="t-item rv">
+      <div class="when">2024 – 2025</div>
+      <h3>Concertina</h3>
+      <div class="role">Full-Stack Digital Marketing</div>
+      <p>Owned the full digital stack: campaigns, content, email and analytics, all connected and all measured against growth.</p>
+    </div>
+    <div class="t-item rv">
+      <div class="when">2023 – 2025</div>
+      <h3>TVA</h3>
+      <div class="role">UI/UX Designer</div>
+      <p>End-to-end creative for clients across industries: websites, landing pages, video and podcasts, plus logos and full brand guides that clients actually use.</p>
+    </div>
+    <div class="t-item rv">
+      <div class="when">2019 – 2022</div>
+      <h3>C-Mall</h3>
+      <div class="role">Marketing Director</div>
+      <p>Owned the whole funnel: Google Ads, automated email, SEO and social. Grew monthly sales to six figures, through a pandemic, not despite it.</p>
+    </div>
+    <div class="t-item rv">
+      <div class="when">2018 – 2019</div>
+      <h3>AnthroDesk</h3>
+      <div class="role">Influencer Marketer</div>
+      <p>Built an influencer program spanning 10,000+ high-tier creators across North America, with an 80% close rate, while producing the product visuals and content behind five stores.</p>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <p class="kicker rv">Services</p>
+  <h2 class="rv">One hire, the whole stack</h2>
+  <p class="lede rv">Stop stitching together freelancers. From strategy to execution, everything below ships from one desk, and every piece talks to the others.</p>
+  <div class="svc-grid">
+    <div class="svc rv"><div class="ico">📣</div><h3>Social Media Marketing</h3><p>Content, community and strategy that grow reach you own, not rented attention.</p><a class="svc-link" href="#cases">View Samples →</a></div>
+    <div class="svc rv"><div class="ico">🛒</div><h3>eCommerce Management</h3><p>Shopify, Amazon and WooCommerce stores tuned so product pages sell while you sleep.</p><a class="svc-link" href="#cases">View Samples →</a></div>
+    <div class="svc rv"><div class="ico">🔍</div><h3>SEO &amp; Content</h3><p>Keywords with buying intent, content that ranks, and backlinks that compound.</p><a class="svc-link" href="#cases">View Samples →</a></div>
+    <div class="svc rv"><div class="ico">🎯</div><h3>PPC &amp; Google Ads</h3><p>Campaigns judged on one metric: return. Data decides, budgets follow.</p><a class="svc-link" href="#cases">View Samples →</a></div>
+    <div class="svc rv"><div class="ico">✨</div><h3>UI/UX &amp; Web Design</h3><p>Interfaces that look premium and convert, because pretty alone doesn't pay.</p><a class="svc-link" href="#cases">View Samples →</a></div>
+    <div class="svc rv"><div class="ico">🎨</div><h3>Brand Identity</h3><p>Logos, guidelines and visual systems that make you instantly recognizable.</p><a class="svc-link" href="#cases">View Samples →</a></div>
+    <div class="svc rv"><div class="ico">✉️</div><h3>Email Marketing</h3><p>Automated flows that recover carts, nurture leads and print repeat revenue.</p><a class="svc-link" href="#cases">View Samples →</a></div>
+    <div class="svc rv"><div class="ico">🎬</div><h3>Video &amp; Content</h3><p>Reels, edits and podcasts that stop the scroll and carry your message.</p><a class="svc-link" href="#cases">View Samples →</a></div>
+  </div>
+</section>
+
+<section id="about">
+  <p class="kicker rv">About</p>
+  <h2 class="rv">Marketer by trade, builder by habit</h2>
+  <div class="about-grid">
+    <div class="glass-panel rv">
+      <p>I've run my own ventures, so I treat your budget like it's mine. That entrepreneurial background is why I don't do vanity metrics: I find the real constraint on growth, fix it, then scale what's working.</p>
+      <p>My edge is range: I can design the landing page, write the copy, build the funnel, launch the ads and read the analytics, so nothing gets lost between specialists and nothing waits on a handoff.</p>
+      <p>Off the clock I'm running, hiking, freediving or painting. Endurance sports keep me sharp; burnout is a marketing strategy I don't recommend.</p>
+    </div>
+    <div class="fact-list">
+      <div class="fact rv"><span class="k">English</span><span class="v">C1 Advanced</span></div>
+      <div class="fact rv"><span class="k">Education</span><span class="v">AB Communication</span></div>
+      <div class="fact rv"><span class="k">MBTI</span><span class="v">INTJ-T · The Architect</span></div>
+      <div class="fact rv"><span class="k">DISC Style</span><span class="v">Assessor · Ci</span></div>
+      <div class="fact rv"><span class="k">Based in</span><span class="v">Philippines · works your hours</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="cta-panel rv">
+    <div class="orb a" style="opacity:.35"></div>
+    <p class="kicker">Let's talk</p>
+    <h2>Ready to grow? Let's find your lever.</h2>
+    <p class="lede">30 minutes, free, no pitch deck. Bring your numbers and leave with two or three moves you can make this quarter, whether we work together or not.</p>
+    <a class="btn btn-primary" style="font-size:1.05rem;padding:16px 34px" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1DVFuc8grUuOy96ow30lNi466Ley-ar6yIovcsVH6v-pXDF1p9wipaoMJA8tpPKfVD1444UMJH" target="_blank" rel="noopener">Book your free strategy call →</a>
+    <div class="availability">Prefer email? <a href="mailto:delacruzrobinb@gmail.com" style="color:var(--violet-soft)">delacruzrobinb@gmail.com</a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="copy">© 2026 Robin Dela Cruz · Full-Stack Digital Marketer</div>
+  <div class="socials">
+    <a href="https://www.facebook.com/robinbdc5/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.09 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.7 4.53-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.09 24 18.1 24 12.07z"/></svg></a>
+    <a href="https://instagram.com/robindcc5" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98 1.28.06 1.69.07 4.95.07s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95C23.73 2.7 21.31.27 16.95.07 15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.15A4 4 0 1 1 16 12a4 4 0 0 1-4 3.99zm6.4-11.85a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44z"/></svg></a>
+    <a href="https://x.com/robinbdlcrz" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.21-6.82-5.97 6.82H1.67l7.73-8.84L1.25 2.25h6.83l4.71 6.23 5.45-6.23zm-1.16 17.52h1.83L7.08 4.13H5.12l11.96 15.64z"/></svg></a>
+    <a href="https://www.linkedin.com/in/robin-dela-cruz/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.02 8h4.96V24H.02V8zm7.98 0h4.76v2.2h.07c.66-1.25 2.28-2.57 4.7-2.57 5.02 0 5.95 3.3 5.95 7.6V24h-4.96v-7.7c0-1.84-.03-4.2-2.56-4.2-2.56 0-2.95 2-2.95 4.06V24H8V8z"/></svg></a>
+    <a href="https://github.com/robindlcrz" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.04-.02-2.04-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .11-.78.42-1.31.76-1.61-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.82 1.1.82 2.22 0 1.61-.02 2.9-.02 3.29 0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+  </div>
+</footer>
+
+<script>
+// loading screen: logo fills left to right, then fades out
+(function(){
+  const loader=document.getElementById('loader');
+  const t0=Date.now();
+  const hide=()=>loader.classList.add('done');
+  window.addEventListener('load',()=>setTimeout(hide,Math.max(0,2000-(Date.now()-t0))));
+  setTimeout(hide,4200); // safety net
+})();
+
+// cursor glow
+addEventListener('pointermove',e=>{
+  document.getElementById('glow').style.setProperty('--mx',e.clientX+'px');
+  document.getElementById('glow').style.setProperty('--my',e.clientY+'px');
+},{passive:true});
+
+// nav
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
+const burger=document.getElementById('burger'),links=document.getElementById('navLinks');
+burger.onclick=()=>links.classList.toggle('open');
+links.querySelectorAll('a').forEach(a=>a.onclick=()=>links.classList.remove('open'));
+
+// rotating hero word
+const words=['buyers','bookings','revenue','fans'];let wi=0;
+const swap=document.getElementById('swap');
+setInterval(()=>{swap.classList.add('out');setTimeout(()=>{wi=(wi+1)%words.length;swap.textContent=words[wi];swap.classList.remove('out')},350)},2600);
+
+// scroll reveal (staggered)
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}
+}),{threshold:.12});
+document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%4)*70+'ms';io.observe(el)});
+
+// counters
+const co=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;co.unobserve(e.target);
+  const n=e.target,to=+n.dataset.to,t0=performance.now(),D=1400;
+  (function tick(t){const p=Math.min((t-t0)/D,1);n.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(tick)})(t0);
+}),{threshold:.6});
+document.querySelectorAll('.count').forEach(n=>co.observe(n));
+
+// marquee duplicate for seamless loop
+const mq=document.getElementById('marquee');mq.innerHTML+=mq.innerHTML;
+
+// case study accordions
+document.querySelectorAll('.case').forEach(c=>c.addEventListener('click',e=>{
+  if(e.target.closest('a'))return;
+  c.classList.toggle('open');
+}));
+
+// service card spotlight follows cursor
+document.querySelectorAll('.svc').forEach(s=>s.addEventListener('pointermove',e=>{
+  const r=s.getBoundingClientRect();
+  s.style.setProperty('--px',(e.clientX-r.left)+'px');
+  s.style.setProperty('--py',(e.clientY-r.top)+'px');
+}));
+
+// subtle hero parallax
+const heroMedia=document.querySelector('.hero-media');
+addEventListener('scroll',()=>{
+  if(scrollY<innerHeight)heroMedia.style.transform='translateY('+scrollY*.25+'px)';
+},{passive:true});
+</script>
+</body>
+</html>
