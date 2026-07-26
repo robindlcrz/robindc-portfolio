@@ -166,7 +166,6 @@ h2{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:800;letter-spacing:-.8px;line-
 
 /* ---------- results globe background ---------- */
 #results{overflow:hidden}
-#globeCanvas{position:absolute;inset:0;z-index:-1;width:100%;height:100%;pointer-events:none;opacity:.85}
 .stat{
   padding:34px 28px;border-radius:var(--radius);text-align:center;
   background:var(--glass);border:1px solid var(--stroke);
@@ -540,7 +539,7 @@ body.modal-open{overflow:hidden}
     <h1 class="rv" id="heroH1"><span id="heroLine1">Marketing <span class="grad">browsers</span> into</span><br><span id="swap"></span></h1>
     <p class="hero-sub rv">I'm Robin Dela Cruz, one specialist covering the complete digital ecosystem: branding, design, web development, UI/UX, and eCommerce, fueled by SEO, email, and paid ads. I've grown brands to six-figure months and category leadership. Yours could be next.</p>
     <div class="hero-ctas rv">
-      <a class="btn btn-primary" href="#" data-open-modal>Get a Free Growth Audit →</a>
+      <a class="btn btn-primary" href="#" data-open-modal>Get a Free Growth Audit</a>
       <a class="btn btn-ghost" href="#cases">See the results</a>
     </div>
     <div class="socials hero-socials rv">
@@ -578,7 +577,6 @@ body.modal-open{overflow:hidden}
 </div>
 
 <section id="results">
-  <canvas id="globeCanvas" aria-hidden="true"></canvas>
   <p class="kicker rv">The numbers first</p>
   <h2 class="rv">Proof beats promises</h2>
   <p class="lede rv">Every engagement is measured. Here's what full-stack marketing has delivered for the brands I've worked with.</p>
@@ -774,7 +772,7 @@ body.modal-open{overflow:hidden}
       <div class="fact rv"><span class="k">Education</span><span class="v">AB Communication</span></div>
       <div class="fact rv"><span class="k">MBTI</span><span class="v">INTJ-T · The Architect</span></div>
       <div class="fact rv"><span class="k">DISC Style</span><span class="v">Assessor · Ci</span></div>
-      <div class="fact rv"><span class="k">Based in</span><span class="v">Philippines · works your hours</span></div>
+      <div class="fact rv"><span class="k">Based in</span><span class="v">Philippines</span></div>
     </div>
   </div>
 </section>
@@ -785,7 +783,7 @@ body.modal-open{overflow:hidden}
     <p class="kicker">Let's talk</p>
     <h2>Ready to grow? Let's find your lever.</h2>
     <p class="lede">30 minutes, free, no pitch deck. Bring your numbers and leave with two or three moves you can make this quarter, whether we work together or not.</p>
-    <a class="btn btn-primary" style="font-size:1.05rem;padding:16px 34px" href="#" data-open-modal>Get a Free Growth Audit →</a>
+    <a class="btn btn-primary" style="font-size:1.05rem;padding:16px 34px" href="#" data-open-modal>Get a Free Growth Audit</a>
     <div class="availability">Prefer email? <a href="mailto:robin@robindc.com" style="color:var(--violet-soft)">robin@robindc.com</a></div>
   </div>
 </section>
@@ -1058,173 +1056,6 @@ body.modal-open{overflow:hidden}
     if(raf)cancelAnimationFrame(raf);
     frame();
     if(reduceMotion){gems.forEach(drawGem);} // draw one static frame
-  }
-  boot();
-  let rT;
-  addEventListener('resize',()=>{clearTimeout(rT);rT=setTimeout(boot,150)},{passive:true});
-})();
-
-// animated globe background for the "Proof beats promises" stats section —
-// a rotating wireframe globe with flight-path style arcs connecting
-// scattered points on its surface to each other, suggesting global reach
-(function(){
-  const canvas=document.getElementById('globeCanvas');
-  if(!canvas)return;
-  const ctx=canvas.getContext('2d');
-  const section=canvas.parentElement;
-  const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let W=0,H=0,dpr=1,cx=0,cy=0,R=0,points=[],links=[],raf=null,t0=performance.now();
-
-  function rand(a,b){return a+Math.random()*(b-a)}
-
-  function resize(){
-    dpr=Math.min(devicePixelRatio||1,2);
-    W=section.clientWidth;H=section.clientHeight;
-    canvas.width=Math.round(W*dpr);canvas.height=Math.round(H*dpr);
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-    cx=W*0.5;cy=H*0.48;
-    R=Math.max(130,Math.min(W,H)*0.36);
-    R=Math.min(R,340);
-  }
-
-  function initPoints(){
-    // points scattered across the globe's face (uniform over the disc)
-    const count=11;
-    points=Array.from({length:count},()=>{
-      const angle=rand(0,Math.PI*2);
-      const dist=R*Math.sqrt(rand(0.12,0.9));
-      return{
-        x:cx+Math.cos(angle)*dist,
-        y:cy+Math.sin(angle)*dist*0.92
-      };
-    });
-    // country-to-country connections — more links than points so several
-    // are always in flight; pairs are picked at random (no self-links)
-    const linkCount=14;
-    links=Array.from({length:linkCount},()=>{
-      let a=Math.floor(rand(0,points.length));
-      let b=Math.floor(rand(0,points.length));
-      while(b===a)b=Math.floor(rand(0,points.length));
-      return{
-        a,b,
-        cycle:rand(2600,4200),
-        phase:rand(0,5000)
-      };
-    });
-  }
-
-  function ellipse(rx,ry,rot,alpha){
-    ctx.save();
-    ctx.translate(cx,cy);
-    ctx.rotate(rot);
-    ctx.scale(1,ry/rx);
-    ctx.beginPath();
-    ctx.arc(0,0,rx,0,Math.PI*2);
-    ctx.restore();
-    ctx.strokeStyle='rgba(56,189,248,'+alpha+')';
-    ctx.lineWidth=1;
-    ctx.stroke();
-  }
-
-  function drawGlobe(time){
-    // outline
-    ctx.beginPath();
-    ctx.arc(cx,cy,R,0,Math.PI*2);
-    ctx.strokeStyle='rgba(56,189,248,.24)';
-    ctx.lineWidth=1.5;
-    ctx.stroke();
-
-    // rotating meridians (vertical ellipses simulating a spinning sphere)
-    const spin=time*0.00028;
-    for(let i=0;i<3;i++){
-      const phase=spin+i*(Math.PI/3);
-      const rx=Math.max(4,R*Math.abs(Math.cos(phase)));
-      ellipse(rx,R,0,.15);
-    }
-    // static latitude lines (flattened horizontal ellipses)
-    ctx.save();
-    ctx.translate(cx,cy-R*0.42);
-    ctx.beginPath();ctx.ellipse(0,0,R*0.82,R*0.22,0,0,Math.PI*2);ctx.restore();
-    ctx.strokeStyle='rgba(56,189,248,.11)';ctx.lineWidth=1;ctx.stroke();
-    ctx.save();
-    ctx.translate(cx,cy+R*0.42);
-    ctx.beginPath();ctx.ellipse(0,0,R*0.82,R*0.22,0,0,Math.PI*2);ctx.restore();
-    ctx.strokeStyle='rgba(56,189,248,.11)';ctx.lineWidth=1;ctx.stroke();
-    ctx.save();
-    ctx.translate(cx,cy);
-    ctx.beginPath();ctx.ellipse(0,0,R,R*0.30,0,0,Math.PI*2);ctx.restore();
-    ctx.strokeStyle='rgba(125,211,248,.14)';ctx.lineWidth=1;ctx.stroke();
-
-    // resting markers for every point, so the globe always reads as a
-    // network even when a given point has no active connection
-    points.forEach(p=>{
-      ctx.beginPath();
-      ctx.arc(p.x,p.y,2,0,Math.PI*2);
-      ctx.fillStyle='rgba(56,189,248,.25)';
-      ctx.fill();
-    });
-  }
-
-  function drawLinks(time){
-    links.forEach(link=>{
-      const p0=points[link.a],p1=points[link.b];
-      if(!p0||!p1)return;
-      const t=(((time+link.phase)%link.cycle)/link.cycle);
-      const drawFrac=0.5;  // portion of cycle spent drawing out
-      const holdFrac=0.78; // portion where line stays fully visible
-
-      // arc bulges outward, away from the globe center, like a flight path
-      const mx=(p0.x+p1.x)/2,my=(p0.y+p1.y)/2;
-      const dirx=mx-cx,diry=my-cy;
-      const dlen=Math.hypot(dirx,diry)||1;
-      const chord=Math.hypot(p1.x-p0.x,p1.y-p0.y);
-      const bulge=chord*0.32;
-      const cxp=mx+(dirx/dlen)*bulge;
-      const cyp=my+(diry/dlen)*bulge;
-
-      let arcT,alpha;
-      if(t<drawFrac){ arcT=t/drawFrac; alpha=arcT; }
-      else if(t<holdFrac){ arcT=1; alpha=1; }
-      else { arcT=1; alpha=1-((t-holdFrac)/(1-holdFrac)); }
-      if(alpha<=0.02)return;
-
-      ctx.beginPath();
-      const steps=28;
-      for(let s=0;s<=steps;s++){
-        const p=(s/steps)*arcT;
-        const ix=(1-p)*(1-p)*p0.x+2*(1-p)*p*cxp+p*p*p1.x;
-        const iy=(1-p)*(1-p)*p0.y+2*(1-p)*p*cyp+p*p*p1.y;
-        if(s===0)ctx.moveTo(ix,iy);else ctx.lineTo(ix,iy);
-      }
-      ctx.strokeStyle='rgba(14,165,233,'+(0.65*alpha)+')';
-      ctx.lineWidth=2.4;
-      ctx.lineCap='round';
-      ctx.stroke();
-
-      // bright pulsing markers at both ends while the link is active
-      const pulse=0.5+0.5*Math.sin(time*0.006+link.phase);
-      [p0,p1].forEach(p=>{
-        ctx.beginPath();
-        ctx.arc(p.x,p.y,2.4+pulse*1.8,0,Math.PI*2);
-        ctx.fillStyle='rgba(125,211,252,'+(0.75*alpha)+')';
-        ctx.fill();
-      });
-    });
-  }
-
-  function frame(now){
-    ctx.clearRect(0,0,W,H);
-    const time=now-t0;
-    drawGlobe(time);
-    drawLinks(time);
-    if(!reduceMotion)raf=requestAnimationFrame(frame);
-  }
-
-  function boot(){
-    resize();initPoints();
-    if(raf)cancelAnimationFrame(raf);
-    t0=performance.now();
-    frame(t0);
   }
   boot();
   let rT;
