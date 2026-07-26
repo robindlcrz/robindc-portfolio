@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Robin Dela Cruz | Full-Stack Digital Marketer</title>
-<meta name="description" content="One marketer, the whole stack. SEO, paid ads, email, UI/UX and eCommerce that turned brands into category leaders. Book a free strategy call.">
+<meta name="description" content="One marketer, the whole stack. SEO, paid ads, email, UI/UX and eCommerce that turned brands into category leaders. Get a free growth audit.">
 <meta property="og:title" content="Robin Dela Cruz | Full-Stack Digital Marketer">
-<meta property="og:description" content="300% month-over-month growth. 10,000+ creator partnerships. Six-figure monthly sales. See how, then book a call.">
+<meta property="og:description" content="300% month-over-month growth. 10,000+ creator partnerships. Six-figure monthly sales. See how, then get your free growth audit.">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="preload" as="image" href="logo.png">
@@ -19,9 +19,9 @@
   --bg2:#0d0b1a;
   --ink:#f4f2ff;
   --muted:#a9a3c2;
-  --violet:#8b5cf6;
-  --violet-2:#a78bfa;
-  --violet-soft:#c4b5fd;
+  --violet:#0ea5e9;
+  --violet-2:#38bdf8;
+  --violet-soft:#7dd3fc;
   --glass:rgba(255,255,255,.055);
   --glass-strong:rgba(255,255,255,.09);
   --stroke:rgba(255,255,255,.12);
@@ -56,14 +56,14 @@ h1,h2,h3,.wordmark{font-family:'Sora',sans-serif}
 /* ---------- cursor glow ---------- */
 #glow{
   position:fixed;inset:0;pointer-events:none;z-index:1;
-  background:radial-gradient(600px circle at var(--mx,50%) var(--my,30%),rgba(139,92,246,.10),transparent 55%);
+  background:radial-gradient(600px circle at var(--mx,50%) var(--my,30%),rgba(14,165,233,.10),transparent 55%);
   transition:background .15s;
 }
 
 /* ---------- ambient orbs ---------- */
 .orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5;pointer-events:none;animation:drift 18s ease-in-out infinite alternate}
-.orb.a{width:480px;height:480px;background:#6d28d9;top:-120px;left:-120px}
-.orb.b{width:380px;height:380px;background:#4c1d95;bottom:-80px;right:-60px;animation-delay:-9s}
+.orb.a{width:480px;height:480px;background:#0369a1;top:-120px;left:-120px}
+.orb.b{width:380px;height:380px;background:#0c4a6e;bottom:-80px;right:-60px;animation-delay:-9s}
 @keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(60px,40px) scale(1.15)}}
 
 /* ---------- nav ---------- */
@@ -93,10 +93,10 @@ nav.scrolled{background:rgba(13,11,26,.82);box-shadow:0 12px 40px rgba(0,0,0,.45
   will-change:transform;
 }
 .btn-primary{
-  background:linear-gradient(135deg,#7c3aed,#a855f7 55%,#c084fc);
-  color:#fff;box-shadow:0 8px 30px rgba(139,92,246,.35);
+  background:linear-gradient(135deg,#0284c7,#0ea5e9 55%,#38bdf8);
+  color:#fff;box-shadow:0 8px 30px rgba(14,165,233,.35);
 }
-.btn-primary:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 14px 44px rgba(139,92,246,.55)}
+.btn-primary:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 14px 44px rgba(14,165,233,.55)}
 .btn-primary::after{
   content:'';position:absolute;top:0;left:-80%;width:50%;height:100%;
   background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);
@@ -110,18 +110,21 @@ nav.scrolled{background:rgba(13,11,26,.82);box-shadow:0 12px 40px rgba(0,0,0,.45
 }
 .btn-ghost:hover{background:var(--glass-strong);transform:translateY(-2px)}
 .nav-cta{padding:10px 20px;font-size:.85rem}
+.btn-sm{padding:10px 18px;font-size:.82rem;border-radius:11px}
 #burger{display:none;background:none;border:none;color:var(--ink);font-size:1.5rem;cursor:pointer}
 
 /* ---------- hero ---------- */
 header{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
-.hero-media{position:absolute;inset:0;z-index:0}
-.hero-media video,.hero-media img{width:100%;height:100%;object-fit:cover;filter:brightness(.38) saturate(.8)}
-.hero-media::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,7,15,.25) 0%,rgba(8,7,15,.55) 62%,var(--bg) 100%)}
+.hero-media{position:absolute;inset:0;z-index:0;background:radial-gradient(120% 90% at 50% 0%,#0d1b2e 0%,var(--bg) 70%)}
+.hero-media canvas{width:100%;height:100%;display:block}
+.hero-media::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,7,15,.15) 0%,rgba(8,7,15,.5) 62%,var(--bg) 100%)}
 .hero-inner{position:relative;z-index:2;max-width:900px;padding:120px 24px 80px}
-h1{font-size:clamp(2.4rem,6vw,4.3rem);font-weight:800;line-height:1.08;letter-spacing:-1.5px}
-h1 .grad{background:linear-gradient(120deg,#c4b5fd,#8b5cf6 45%,#e879f9);-webkit-background-clip:text;background-clip:text;color:transparent}
-#swap{display:inline-block;min-width:1ch;border-bottom:3px solid var(--violet);transition:opacity .35s,transform .35s}
-#swap.out{opacity:0;transform:translateY(12px)}
+h1{font-size:clamp(1.2rem,6vw,4.3rem);font-weight:800;line-height:1.08;letter-spacing:-1.5px}
+#heroLine1{white-space:nowrap}
+h1 .grad{background:linear-gradient(120deg,#7dd3fc,#0ea5e9 45%,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent}
+#swap{display:inline-block;min-width:1ch}
+#swap::after{content:'';display:inline-block;width:3px;height:.85em;margin-left:3px;background:var(--violet);vertical-align:-0.1em;animation:caretBlink .85s steps(1) infinite}
+@keyframes caretBlink{50%{opacity:0}}
 .hero-sub{margin:26px auto 38px;max-width:640px;color:var(--muted);font-size:clamp(1rem,1.6vw,1.2rem)}
 .hero-ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
 .hero-socials{justify-content:center;margin-top:26px}
@@ -151,32 +154,36 @@ h2{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:800;letter-spacing:-.8px;line-
 .marquee-wrap:hover .marquee{animation-play-state:paused}
 @keyframes scrollx{to{transform:translateX(-50%)}}
 .logo-pill{
-  display:flex;align-items:center;gap:10px;white-space:nowrap;
-  padding:14px 26px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;white-space:nowrap;
+  padding:14px 30px;border-radius:16px;
   background:var(--glass);border:1px solid var(--stroke);
-  color:#ded9f2;font-weight:600;font-size:1rem;font-family:'Sora',sans-serif;
 }
-.logo-pill svg,.logo-pill img{width:22px;height:22px;flex:none}
+.logo-pill img{height:24px;width:auto;object-fit:contain;opacity:.8;transition:opacity .25s ease}
+.logo-pill:hover img{opacity:1}
 
 /* ---------- stats ---------- */
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:50px}
+
+/* ---------- results globe background ---------- */
+#results{overflow:hidden}
+#globeCanvas{position:absolute;inset:0;z-index:-1;width:100%;height:100%;pointer-events:none;opacity:.85}
 .stat{
   padding:34px 28px;border-radius:var(--radius);text-align:center;
   background:var(--glass);border:1px solid var(--stroke);
   backdrop-filter:blur(16px);position:relative;overflow:hidden;
   transition:transform .3s,border-color .3s;
 }
-.stat:hover{transform:translateY(-6px);border-color:rgba(167,139,250,.45)}
-.stat .num{font-family:'Sora',sans-serif;font-size:2.6rem;font-weight:800;background:linear-gradient(120deg,#ede9fe,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat:hover{transform:translateY(-6px);border-color:rgba(56,189,248,.45)}
+.stat .num{font-family:'Sora',sans-serif;font-size:2.6rem;font-weight:800;background:linear-gradient(120deg,#e0f2fe,#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent}
 .stat .lbl{color:var(--muted);font-size:.92rem;margin-top:6px}
 
 /* ---------- timeline ---------- */
 .timeline{margin-top:60px;position:relative;padding-left:34px}
-.timeline::before{content:'';position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--violet),rgba(139,92,246,.05))}
+.timeline::before{content:'';position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--violet),rgba(14,165,233,.05))}
 .t-item{position:relative;margin-bottom:44px}
 .t-item::before{
   content:'';position:absolute;left:-34px;top:6px;width:18px;height:18px;border-radius:50%;
-  background:var(--bg2);border:3px solid var(--violet);box-shadow:0 0 16px rgba(139,92,246,.6);
+  background:var(--bg2);border:3px solid var(--violet);box-shadow:0 0 16px rgba(14,165,233,.6);
 }
 .t-item .when{color:var(--violet-2);font-weight:700;font-size:.85rem;letter-spacing:1.5px}
 .t-item h3{font-size:1.35rem;margin:6px 0 4px}
@@ -191,14 +198,14 @@ h2{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:800;letter-spacing:-.8px;line-
   backdrop-filter:blur(18px);
   transition:transform .35s,border-color .35s,box-shadow .35s;
 }
-.case:hover{transform:translateY(-4px);border-color:rgba(167,139,250,.5);box-shadow:0 24px 60px rgba(76,29,149,.35)}
+.case:hover{transform:translateY(-4px);border-color:rgba(56,189,248,.5);box-shadow:0 24px 60px rgba(3,105,161,.35)}
 .case-top{display:grid;grid-template-columns:340px 1fr;gap:0;align-items:stretch}
 .case-img{position:relative;min-height:240px;overflow:hidden}
 .case-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.3,1)}
 .case:hover .case-img img{transform:scale(1.07)}
 .case-body{padding:30px 34px}
 .tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
-.tag{font-size:.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 12px;border-radius:999px;background:rgba(139,92,246,.16);color:var(--violet-soft);border:1px solid rgba(139,92,246,.35)}
+.tag{font-size:.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 12px;border-radius:999px;background:rgba(14,165,233,.16);color:var(--violet-soft);border:1px solid rgba(14,165,233,.35)}
 .case h3{font-size:1.45rem;letter-spacing:-.4px;margin-bottom:8px}
 .case .sub{color:var(--muted);font-size:.98rem}
 .case .headline-stat{margin-top:16px;font-family:'Sora',sans-serif;font-weight:800;font-size:1.05rem;color:var(--violet-soft)}
@@ -224,24 +231,20 @@ h2{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:800;letter-spacing:-.8px;line-
 }
 .svc::before{
   content:'';position:absolute;inset:0;opacity:0;transition:opacity .4s;pointer-events:none;
-  background:radial-gradient(420px circle at var(--px,50%) var(--py,50%),rgba(139,92,246,.16),transparent 65%);
+  background:radial-gradient(420px circle at var(--px,50%) var(--py,50%),rgba(14,165,233,.16),transparent 65%);
 }
 .svc:hover::before{opacity:1}
-.svc:hover{transform:translateY(-6px);border-color:rgba(167,139,250,.45)}
+.svc:hover{transform:translateY(-6px);border-color:rgba(56,189,248,.45)}
 .svc .ico{
   width:52px;height:52px;border-radius:14px;display:grid;place-items:center;margin-bottom:18px;
-  background:linear-gradient(135deg,rgba(139,92,246,.3),rgba(139,92,246,.08));
-  border:1px solid rgba(167,139,250,.35);font-size:1.4rem;
+  background:linear-gradient(135deg,rgba(14,165,233,.3),rgba(14,165,233,.08));
+  border:1px solid rgba(56,189,248,.35);font-size:1.4rem;
 }
 .svc h3{font-size:1.12rem;margin-bottom:8px}
 .svc p{color:var(--muted);font-size:.92rem}
-.svc-link{
-  position:relative;z-index:1;margin-top:auto;padding-top:18px;
-  display:inline-flex;align-items:center;gap:6px;align-self:flex-start;
-  color:var(--violet-2);font-weight:600;font-size:.88rem;text-decoration:none;
-  transition:color .2s;
+.svc-cta{
+  position:relative;z-index:1;margin-top:22px;align-self:flex-start;
 }
-.svc-link:hover{color:var(--violet-soft);text-decoration:underline}
 
 /* ---------- about ---------- */
 .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:30px;margin-top:50px;align-items:start}
@@ -259,15 +262,15 @@ h2{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:800;letter-spacing:-.8px;line-
   background:var(--glass);border:1px solid var(--stroke);backdrop-filter:blur(14px);
   transition:transform .25s,border-color .25s;
 }
-.fact:hover{transform:translateX(6px);border-color:rgba(167,139,250,.4)}
+.fact:hover{transform:translateX(6px);border-color:rgba(56,189,248,.4)}
 .fact .k{color:var(--muted);font-size:.85rem}
 .fact .v{font-weight:700;font-family:'Sora',sans-serif;color:var(--violet-soft)}
 
 /* ---------- CTA ---------- */
 .cta-panel{
   position:relative;text-align:center;padding:80px 34px;border-radius:32px;overflow:hidden;
-  background:linear-gradient(160deg,rgba(139,92,246,.16),rgba(13,11,26,.6) 60%);
-  border:1px solid rgba(167,139,250,.35);
+  background:linear-gradient(160deg,rgba(14,165,233,.16),rgba(13,11,26,.6) 60%);
+  border:1px solid rgba(56,189,248,.35);
   backdrop-filter:blur(20px);
 }
 .cta-panel h2{margin-bottom:14px}
@@ -307,6 +310,201 @@ footer .copy{color:var(--muted);font-size:.88rem}
   *,*::before,*::after{animation-duration:.001s!important;transition-duration:.001s!important}
   #loader{display:none}
 }
+
+/* ---------- strategy call modal ---------- */
+#callModal{
+  position:fixed;inset:0;z-index:999;
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;
+  opacity:0;pointer-events:none;
+  transition:opacity .3s ease;
+}
+#callModal.open{opacity:1;pointer-events:auto}
+#callModal .modal-backdrop{
+  position:absolute;inset:0;
+  background:rgba(8,7,15,.78);
+  backdrop-filter:blur(6px);
+}
+#callModal .modal-panel{
+  position:relative;
+  width:100%;max-width:640px;max-height:88vh;
+  border-radius:26px;overflow:hidden;
+  background:var(--bg2);border:1px solid var(--stroke);
+  box-shadow:0 30px 80px rgba(3,105,161,.35);
+  transform:translateY(24px) scale(.97);
+  transition:transform .35s cubic-bezier(.16,1,.3,1);
+  display:flex;flex-direction:column;
+}
+#callModal.open .modal-panel{transform:translateY(0) scale(1)}
+#callModal .modal-glow{
+  position:absolute;top:-120px;left:50%;transform:translateX(-50%);
+  width:340px;height:240px;border-radius:50%;
+  background:radial-gradient(circle,rgba(14,165,233,.35),transparent 70%);
+  filter:blur(40px);pointer-events:none;
+}
+#callModal .modal-head{
+  position:relative;
+  display:flex;align-items:flex-start;justify-content:space-between;
+  gap:16px;padding:26px 28px 18px;
+  border-bottom:1px solid var(--stroke);
+}
+#callModal .modal-head h3{
+  font-family:'Sora',sans-serif;font-size:1.3rem;margin:0 0 6px;
+  background:linear-gradient(120deg,#7dd3fc,#0ea5e9 45%,#22d3ee);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+#callModal .modal-head p{color:var(--muted);font-size:.9rem;margin:0}
+#callModal .modal-close{
+  flex-shrink:0;
+  width:34px;height:34px;border-radius:50%;
+  background:var(--glass);border:1px solid var(--stroke);
+  color:var(--ink);font-size:1.1rem;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s,border-color .2s,transform .2s;
+}
+#callModal .modal-close:hover{background:rgba(14,165,233,.18);border-color:var(--violet);transform:rotate(90deg)}
+#callModal .modal-body{flex:1;overflow-y:auto;background:var(--bg2)}
+@media (max-width:600px){
+  #callModal{padding:0}
+  #callModal .modal-panel{max-width:100%;height:100%;max-height:100%;border-radius:0}
+  #callModal .modal-body{flex:1}
+}
+
+/* ---------- sample gallery modal ---------- */
+#galleryModal{
+  position:fixed;inset:0;z-index:999;
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;
+  opacity:0;pointer-events:none;
+  transition:opacity .3s ease;
+}
+#galleryModal.open{opacity:1;pointer-events:auto}
+#galleryModal .modal-backdrop{
+  position:absolute;inset:0;
+  background:rgba(8,7,15,.78);
+  backdrop-filter:blur(6px);
+}
+#galleryModal .modal-panel{
+  position:relative;
+  width:100%;max-width:920px;max-height:88vh;
+  border-radius:26px;overflow:hidden;
+  background:var(--bg2);border:1px solid var(--stroke);
+  box-shadow:0 30px 80px rgba(3,105,161,.35);
+  transform:translateY(24px) scale(.97);
+  transition:transform .35s cubic-bezier(.16,1,.3,1);
+  display:flex;flex-direction:column;
+}
+#galleryModal.open .modal-panel{transform:translateY(0) scale(1)}
+#galleryModal .modal-close{
+  position:absolute;top:18px;right:18px;z-index:3;
+  width:34px;height:34px;border-radius:50%;
+  background:var(--glass);border:1px solid var(--stroke);
+  color:var(--ink);font-size:1.1rem;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(10px);
+  transition:background .2s,border-color .2s,transform .2s;
+}
+#galleryModal .modal-close:hover{background:rgba(14,165,233,.18);border-color:var(--violet);transform:rotate(90deg)}
+.gallery-layout{display:flex;overflow-y:auto}
+.gallery-media{flex:1.05;min-width:0;padding:28px;display:flex;flex-direction:column;gap:14px;background:var(--bg)}
+.gallery-main{
+  width:100%;aspect-ratio:1/1;border-radius:18px;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;position:relative;
+  background:linear-gradient(135deg,rgba(14,165,233,.28),rgba(56,189,248,.08));
+  border:1px solid var(--stroke);
+}
+.gallery-main .gallery-main-ico{font-size:3.4rem;opacity:.85}
+.gallery-main .gallery-main-label{
+  position:absolute;bottom:14px;left:14px;font-size:.78rem;font-weight:600;
+  color:var(--muted);background:rgba(8,7,15,.55);padding:5px 12px;border-radius:20px;
+  backdrop-filter:blur(6px);
+}
+.gallery-thumbs{display:flex;gap:10px;flex-wrap:wrap}
+.gallery-thumb{
+  width:64px;aspect-ratio:1/1;border-radius:10px;flex-shrink:0;cursor:pointer;
+  background:linear-gradient(135deg,rgba(14,165,233,.22),rgba(56,189,248,.06));
+  border:2px solid var(--stroke);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.15rem;opacity:.75;
+  transition:opacity .2s,border-color .2s,transform .2s;
+}
+.gallery-thumb:hover{opacity:1;transform:translateY(-2px)}
+.gallery-thumb.active{opacity:1;border-color:var(--violet)}
+.gallery-info{flex:.9;min-width:0;padding:32px 32px 32px 0;display:flex;flex-direction:column;justify-content:center}
+.gallery-info .gallery-eyebrow{color:var(--violet-2);font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.gallery-info h3{font-family:'Sora',sans-serif;font-size:1.5rem;margin:0 0 14px}
+.gallery-info p{color:var(--muted);font-size:.96rem;line-height:1.6}
+@media (max-width:720px){
+  .gallery-layout{flex-direction:column}
+  .gallery-media{padding:24px 24px 0}
+  .gallery-info{padding:20px 24px 28px}
+}
+@media (max-width:600px){
+  #galleryModal{padding:0}
+  #galleryModal .modal-panel{max-width:100%;height:100%;max-height:100%;border-radius:0}
+}
+body.modal-open{overflow:hidden}
+
+/* ---------- native audit form (no iframe) ---------- */
+#auditForm{padding:26px 28px 30px;display:flex;flex-direction:column;gap:20px}
+.af-field{display:flex;flex-direction:column;gap:8px}
+.af-field label{font-size:.88rem;font-weight:600;color:var(--ink)}
+.af-field label em{color:#38bdf8;font-style:normal;margin-left:2px}
+.af-hint{font-size:.78rem;color:var(--muted);margin-top:-4px}
+.af-input,.af-select,.af-textarea{
+  width:100%;padding:13px 16px;border-radius:12px;
+  background:var(--glass);border:1px solid var(--stroke);
+  color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:.94rem;
+  transition:border-color .2s,background .2s,box-shadow .2s;
+}
+.af-input::placeholder,.af-textarea::placeholder{color:#7a7593}
+.af-input:focus,.af-select:focus,.af-textarea:focus{
+  outline:none;border-color:var(--violet);background:var(--glass-strong);
+  box-shadow:0 0 0 3px rgba(14,165,233,.22);
+}
+.af-select{appearance:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237dd3fc' stroke-width='2.5' stroke-linecap='round'><path d='m6 9 6 6 6-6'/></svg>");
+  background-repeat:no-repeat;background-position:right 14px center;background-size:16px;
+  padding-right:40px;
+}
+.af-select option{background:#0d0b1a;color:var(--ink)}
+.af-textarea{resize:vertical;min-height:80px;font-family:inherit}
+.af-choice-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:9px}
+.af-choice{
+  position:relative;display:flex;align-items:center;gap:9px;
+  padding:11px 14px;border-radius:12px;cursor:pointer;
+  background:var(--glass);border:1px solid var(--stroke);
+  font-size:.86rem;color:var(--muted);transition:border-color .2s,color .2s,background .2s;
+}
+.af-choice:hover{border-color:rgba(56,189,248,.4);color:var(--ink)}
+.af-choice input{accent-color:#0ea5e9;width:16px;height:16px;flex:none}
+.af-choice:has(input:checked){border-color:var(--violet);background:rgba(14,165,233,.14);color:var(--ink)}
+.af-other-text{margin-top:8px}
+.af-note{
+  padding:14px 16px;border-radius:12px;
+  background:rgba(14,165,233,.1);border:1px solid rgba(56,189,248,.3);
+  font-size:.86rem;color:var(--violet-soft);display:none;
+}
+.af-note.show{display:block}
+.af-note a{color:#7dd3fc;font-weight:700;text-decoration:underline}
+.af-submit{
+  margin-top:6px;width:100%;justify-content:center;
+  padding:15px 26px;font-size:1rem;
+}
+.af-error{font-size:.78rem;color:#fca5a5;display:none}
+.af-error.show{display:block}
+#auditSuccess{
+  display:none;flex-direction:column;align-items:center;text-align:center;
+  gap:14px;padding:60px 32px;
+}
+#auditSuccess.show{display:flex}
+#auditSuccess .af-check{
+  width:56px;height:56px;border-radius:50%;
+  background:rgba(14,165,233,.16);border:1px solid rgba(56,189,248,.4);
+  display:grid;place-items:center;font-size:1.6rem;color:#38bdf8;
+}
+#auditSuccess h4{font-family:'Sora',sans-serif;font-size:1.2rem}
+#auditSuccess p{color:var(--muted);font-size:.92rem;max-width:380px}
 </style>
 </head>
 <body>
@@ -327,24 +525,22 @@ footer .copy{color:var(--muted);font-size:.88rem}
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:14px">
-    <a class="btn btn-primary nav-cta" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1DVFuc8grUuOy96ow30lNi466Ley-ar6yIovcsVH6v-pXDF1p9wipaoMJA8tpPKfVD1444UMJH" target="_blank" rel="noopener">Book a call</a>
+    <a class="btn btn-primary nav-cta" href="#" data-open-modal>Get Free Audit</a>
     <button id="burger" aria-label="Menu">☰</button>
   </div>
 </nav>
 
 <header id="top">
   <div class="hero-media">
-    <video autoplay muted loop playsinline poster="hero-poster.jpg" onerror="this.style.display='none'">
-      <source src="4b6025fd68280ca0bb8836d9f3ac9cbd.mp4" type="video/mp4">
-    </video>
+    <canvas id="heroCanvas" aria-hidden="true"></canvas>
   </div>
   <div class="orb a"></div>
   <div class="orb b"></div>
   <div class="hero-inner">
-    <h1 class="rv">Marketing<br><span class="grad">browsers</span> into <span id="swap">buyers</span></h1>
-    <p class="hero-sub rv">I'm Robin Dela Cruz, one specialist covering the full stack: SEO, paid ads, email, UI/UX and eCommerce. I've grown brands to six-figure months and category leadership. Yours could be next.</p>
+    <h1 class="rv" id="heroH1"><span id="heroLine1">Marketing <span class="grad">browsers</span> into</span><br><span id="swap"></span></h1>
+    <p class="hero-sub rv">I'm Robin Dela Cruz, one specialist covering the complete digital ecosystem: branding, design, web development, UI/UX, and eCommerce, fueled by SEO, email, and paid ads. I've grown brands to six-figure months and category leadership. Yours could be next.</p>
     <div class="hero-ctas rv">
-      <a class="btn btn-primary" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1DVFuc8grUuOy96ow30lNi466Ley-ar6yIovcsVH6v-pXDF1p9wipaoMJA8tpPKfVD1444UMJH" target="_blank" rel="noopener">Book a free strategy call →</a>
+      <a class="btn btn-primary" href="#" data-open-modal>Get a Free Growth Audit →</a>
       <a class="btn btn-ghost" href="#cases">See the results</a>
     </div>
     <div class="socials hero-socials rv">
@@ -365,20 +561,24 @@ footer .copy{color:var(--muted);font-size:.88rem}
 
 <div class="marquee-wrap rv">
   <div class="marquee" id="marquee">
-    <div class="logo-pill"><img src="https://cdn.simpleicons.org/meta/a78bfa" alt="" width="22" height="22" loading="lazy" onerror="this.style.display='none'">Meta Ads</div>
-    <div class="logo-pill"><img src="https://cdn.simpleicons.org/googleads/a78bfa" alt="" width="22" height="22" loading="lazy" onerror="this.style.display='none'">Google Ads</div>
-    <div class="logo-pill"><img src="https://cdn.simpleicons.org/shopify/a78bfa" alt="" width="22" height="22" loading="lazy" onerror="this.style.display='none'">Shopify</div>
-    <div class="logo-pill"><svg viewBox="0 0 24 24"><path fill="#a78bfa" d="M4 3h16.2a.8.8 0 0 1 .66 1.25L15.6 12l5.26 7.75A.8.8 0 0 1 20.2 21H4V3z"/></svg>Klaviyo</div>
-    <div class="logo-pill"><svg viewBox="0 0 24 24"><path fill="#a78bfa" d="M4 20v-5h3v5H4Zm6.5 0V9h3v11h-3ZM17 20V4h3v16h-3Z"/><path d="m4 11 6.5-4 4 2L20 4" stroke="#c4b5fd" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".9"/></svg>GoHighLevel</div>
-    <div class="logo-pill"><img src="https://cdn.simpleicons.org/figma/a78bfa" alt="" width="22" height="22" loading="lazy" onerror="this.style.display='none'">Figma</div>
-    <div class="logo-pill"><svg viewBox="0 0 24 24"><path fill="#a78bfa" d="M8.5 6c-3 0-5.5 2.7-5.5 6s2.5 6 5.5 6c1.8 0 3.3-.9 4.3-2.4-1-.5-1.7-1.3-2.1-2.2-.5.9-1.3 1.6-2.2 1.6-1.4 0-2.5-1.3-2.5-3s1.1-3 2.5-3c.9 0 1.7.7 2.2 1.6.4-.9 1.1-1.7 2.1-2.2C11.8 6.9 10.3 6 8.5 6Zm7 0c-1.8 0-3.3.9-4.3 2.4 1 .5 1.7 1.3 2.1 2.2.5-.9 1.3-1.6 2.2-1.6 1.4 0 2.5 1.3 2.5 3s-1.1 3-2.5 3c-.9 0-1.7-.7-2.2-1.6-.4.9-1.1 1.7-2.1 2.2 1 1.5 2.5 2.4 4.3 2.4 3 0 5.5-2.7 5.5-6s-2.5-6-5.5-6Z"/></svg>Adobe CC</div>
-    <div class="logo-pill"><img src="https://cdn.simpleicons.org/semrush/a78bfa" alt="" width="22" height="22" loading="lazy" onerror="this.style.display='none'">Semrush</div>
-    <div class="logo-pill"><img src="https://cdn.simpleicons.org/mailchimp/a78bfa" alt="" width="22" height="22" loading="lazy" onerror="this.style.display='none'">Mailchimp</div>
-    <div class="logo-pill"><img src="https://cdn.simpleicons.org/hootsuite/a78bfa" alt="" width="22" height="22" loading="lazy" onerror="this.style.display='none'">Hootsuite</div>
+    <div class="logo-pill"><img src="services/meta.png" alt="Meta Ads" loading="lazy"></div>
+    <div class="logo-pill"><img src="services/googleads.png" alt="Google Ads" loading="lazy"></div>
+    <div class="logo-pill"><img src="services/shopify.png" alt="Shopify" loading="lazy"></div>
+    <div class="logo-pill"><img src="services/klaviyo.png" alt="Klaviyo" loading="lazy"></div>
+    <div class="logo-pill"><img src="services/gohighlevel.png" alt="GoHighLevel" loading="lazy"></div>
+    <div class="logo-pill"><img src="services/Figma.png" alt="Figma" loading="lazy"></div>
+    <div class="logo-pill"><img src="services/adobe.png" alt="Adobe CC" loading="lazy"></div>
+    <div class="logo-pill"><img src="services/semrush.png" alt="Semrush" loading="lazy"></div>
+    <div class="logo-pill"><img src="services/mailchimp.png" alt="Mailchimp" loading="lazy"></div>
+    <div class="logo-pill"><img src="services/hootsuite.png" alt="Hootsuite" loading="lazy"></div>
+    <div class="logo-pill"><img src="services/webflow.png" alt="Webflow" loading="lazy"></div>
+    <div class="logo-pill"><img src="services/wordpress.png" alt="WordPress" loading="lazy"></div>
+    <div class="logo-pill"><img src="services/zoho.png" alt="Zoho" loading="lazy"></div>
   </div>
 </div>
 
 <section id="results">
+  <canvas id="globeCanvas" aria-hidden="true"></canvas>
   <p class="kicker rv">The numbers first</p>
   <h2 class="rv">Proof beats promises</h2>
   <p class="lede rv">Every engagement is measured. Here's what full-stack marketing has delivered for the brands I've worked with.</p>
@@ -549,14 +749,14 @@ footer .copy{color:var(--muted);font-size:.88rem}
   <h2 class="rv">One hire, the whole stack</h2>
   <p class="lede rv">Stop stitching together freelancers. From strategy to execution, everything below ships from one desk, and every piece talks to the others.</p>
   <div class="svc-grid">
-    <div class="svc rv"><div class="ico">📣</div><h3>Social Media Marketing</h3><p>Content, community and strategy that grow reach you own, not rented attention.</p><a class="svc-link" href="#cases">View Samples →</a></div>
-    <div class="svc rv"><div class="ico">🛒</div><h3>eCommerce Management</h3><p>Shopify, Amazon and WooCommerce stores tuned so product pages sell while you sleep.</p><a class="svc-link" href="#cases">View Samples →</a></div>
-    <div class="svc rv"><div class="ico">🔍</div><h3>SEO &amp; Content</h3><p>Keywords with buying intent, content that ranks, and backlinks that compound.</p><a class="svc-link" href="#cases">View Samples →</a></div>
-    <div class="svc rv"><div class="ico">🎯</div><h3>PPC &amp; Google Ads</h3><p>Campaigns judged on one metric: return. Data decides, budgets follow.</p><a class="svc-link" href="#cases">View Samples →</a></div>
-    <div class="svc rv"><div class="ico">✨</div><h3>UI/UX &amp; Web Design</h3><p>Interfaces that look premium and convert, because pretty alone doesn't pay.</p><a class="svc-link" href="#cases">View Samples →</a></div>
-    <div class="svc rv"><div class="ico">🎨</div><h3>Brand Identity</h3><p>Logos, guidelines and visual systems that make you instantly recognizable.</p><a class="svc-link" href="#cases">View Samples →</a></div>
-    <div class="svc rv"><div class="ico">✉️</div><h3>Email Marketing</h3><p>Automated flows that recover carts, nurture leads and print repeat revenue.</p><a class="svc-link" href="#cases">View Samples →</a></div>
-    <div class="svc rv"><div class="ico">🎬</div><h3>Video &amp; Content</h3><p>Reels, edits and podcasts that stop the scroll and carry your message.</p><a class="svc-link" href="#cases">View Samples →</a></div>
+    <div class="svc rv"><div class="ico">📣</div><h3>Social Media Marketing</h3><p>Content, community and strategy that grow reach you own, not rented attention.</p><button type="button" class="btn btn-primary btn-sm svc-cta" data-gallery="social">View Samples →</button></div>
+    <div class="svc rv"><div class="ico">🛒</div><h3>eCommerce Management</h3><p>Shopify, Amazon and WooCommerce stores tuned so product pages sell while you sleep.</p><button type="button" class="btn btn-primary btn-sm svc-cta" data-gallery="ecom">View Samples →</button></div>
+    <div class="svc rv"><div class="ico">🔍</div><h3>SEO &amp; Content</h3><p>Keywords with buying intent, content that ranks, and backlinks that compound.</p><button type="button" class="btn btn-primary btn-sm svc-cta" data-gallery="seo">View Samples →</button></div>
+    <div class="svc rv"><div class="ico">🎯</div><h3>PPC &amp; Google Ads</h3><p>Campaigns judged on one metric: return. Data decides, budgets follow.</p><button type="button" class="btn btn-primary btn-sm svc-cta" data-gallery="ppc">View Samples →</button></div>
+    <div class="svc rv"><div class="ico">✨</div><h3>UI/UX &amp; Web Design</h3><p>Interfaces that look premium and convert, because pretty alone doesn't pay.</p><button type="button" class="btn btn-primary btn-sm svc-cta" data-gallery="design">View Samples →</button></div>
+    <div class="svc rv"><div class="ico">🎨</div><h3>Brand Identity</h3><p>Logos, guidelines and visual systems that make you instantly recognizable.</p><button type="button" class="btn btn-primary btn-sm svc-cta" data-gallery="brand">View Samples →</button></div>
+    <div class="svc rv"><div class="ico">✉️</div><h3>Email Marketing</h3><p>Automated flows that recover carts, nurture leads and print repeat revenue.</p><button type="button" class="btn btn-primary btn-sm svc-cta" data-gallery="email">View Samples →</button></div>
+    <div class="svc rv"><div class="ico">🎬</div><h3>Video &amp; Content</h3><p>Reels, edits and podcasts that stop the scroll and carry your message.</p><button type="button" class="btn btn-primary btn-sm svc-cta" data-gallery="video">View Samples →</button></div>
   </div>
 </section>
 
@@ -585,8 +785,8 @@ footer .copy{color:var(--muted);font-size:.88rem}
     <p class="kicker">Let's talk</p>
     <h2>Ready to grow? Let's find your lever.</h2>
     <p class="lede">30 minutes, free, no pitch deck. Bring your numbers and leave with two or three moves you can make this quarter, whether we work together or not.</p>
-    <a class="btn btn-primary" style="font-size:1.05rem;padding:16px 34px" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1DVFuc8grUuOy96ow30lNi466Ley-ar6yIovcsVH6v-pXDF1p9wipaoMJA8tpPKfVD1444UMJH" target="_blank" rel="noopener">Book your free strategy call →</a>
-    <div class="availability">Prefer email? <a href="mailto:delacruzrobinb@gmail.com" style="color:var(--violet-soft)">delacruzrobinb@gmail.com</a></div>
+    <a class="btn btn-primary" style="font-size:1.05rem;padding:16px 34px" href="#" data-open-modal>Get a Free Growth Audit →</a>
+    <div class="availability">Prefer email? <a href="mailto:robin@robindc.com" style="color:var(--violet-soft)">robin@robindc.com</a></div>
   </div>
 </section>
 
@@ -601,6 +801,143 @@ footer .copy{color:var(--muted);font-size:.88rem}
   </div>
 </footer>
 
+<div id="callModal" role="dialog" aria-modal="true" aria-labelledby="callModalTitle">
+  <div class="modal-backdrop" data-modal-close></div>
+  <div class="modal-panel">
+    <div class="modal-glow"></div>
+    <div class="modal-head">
+      <div>
+        <h3 id="callModalTitle">Let's find your growth lever</h3>
+        <p>Free 30-min strategy call — tell me a bit about your brand first.</p>
+      </div>
+      <button class="modal-close" type="button" data-modal-close aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <form id="auditForm" action="https://forms.zohopublic.com/robinrob1/form/FreeDigitalGrowthAudit/formperma/kdYg0Nmm4Hyi6-pMY1y17baxoOUQEQ55Gp_OfinyQSs/htmlRecords/submit" name="growthAuditForm" method="POST" target="zf_hidden_frame" accept-charset="UTF-8" enctype="multipart/form-data">
+        <input type="hidden" name="zf_referrer_name" value="">
+        <input type="hidden" name="zf_redirect_url" value="">
+        <input type="hidden" name="zc_gad" value="">
+
+        <div class="af-field">
+          <label for="af_name">Name<em>*</em></label>
+          <input class="af-input" type="text" id="af_name" name="SingleLine" maxlength="255" placeholder="Your full name" required>
+        </div>
+
+        <div class="af-field">
+          <label for="af_brand">Brand Name<em>*</em></label>
+          <input class="af-input" type="text" id="af_brand" name="SingleLine1" maxlength="255" placeholder="e.g. Acme Co." required>
+        </div>
+
+        <div class="af-field">
+          <label for="af_website">Website URL</label>
+          <input class="af-input" type="text" id="af_website" name="Website" maxlength="2083" placeholder="https://yourbrand.com">
+        </div>
+
+        <div class="af-field">
+          <label for="af_presence">Where's your digital presence at right now?<em>*</em></label>
+          <select class="af-select" id="af_presence" name="Dropdown" required>
+            <option value="" selected disabled>Select one</option>
+            <option value="Running campaigns, but conversions/leads aren't where they should be">Running campaigns, but conversions/leads aren't where they should be</option>
+            <option value="Getting some visibility, but no real strategy behind it">Getting some visibility, but no real strategy behind it</option>
+            <option value="Starting from scratch, need guidance">Starting from scratch, need guidance</option>
+            <option value="Not sure — I just know we need to grow">Not sure — I just know we need to grow</option>
+          </select>
+        </div>
+
+        <div class="af-field">
+          <label>What kind of business are you growing?<em>*</em></label>
+          <div class="af-choice-grid">
+            <label class="af-choice"><input type="radio" name="Radio1" value="eCommerce / Retail" required>eCommerce / Retail</label>
+            <label class="af-choice"><input type="radio" name="Radio1" value="Professional Services (Legal, Medical, Financial, Consulting)" required>Professional Services</label>
+            <label class="af-choice"><input type="radio" name="Radio1" value="Local / Hospitality" required>Local / Hospitality</label>
+            <label class="af-choice"><input type="radio" name="Radio1" value="B2B / SaaS" required>B2B / SaaS</label>
+            <label class="af-choice"><input type="radio" name="Radio1" value="Real Estate" required>Real Estate</label>
+            <label class="af-choice"><input type="radio" name="Radio1" value="Health &amp; Wellness / Fitness" required>Health &amp; Wellness / Fitness</label>
+            <label class="af-choice"><input type="radio" name="Radio1" value="Home Services / Trades" required>Home Services / Trades</label>
+            <label class="af-choice"><input type="radio" name="Radio1" value="Education / Nonprofit" required>Education / Nonprofit</label>
+            <label class="af-choice"><input type="radio" id="af_radio1_other" name="Radio1" value="zfs-others-zfs" required>Other</label>
+          </div>
+          <input class="af-input af-other-text" type="text" id="af_radio1_other_text" name="Radio1_allow_others_text" maxlength="150" placeholder="Tell us what kind of business" style="display:none">
+        </div>
+
+        <div class="af-field">
+          <label>What's stopping your growth right now? <span style="font-weight:400;color:var(--muted)">(select all that apply)</span></label>
+          <div class="af-choice-grid">
+            <label class="af-choice"><input type="checkbox" name="Checkbox" value="People don't find us">People don't find us</label>
+            <label class="af-choice"><input type="checkbox" name="Checkbox" value="People find us but don't convert">People find us but don't convert</label>
+            <label class="af-choice"><input type="checkbox" name="Checkbox" value="We get customers once but they don't come back">Customers don't come back</label>
+            <label class="af-choice"><input type="checkbox" name="Checkbox" value="We don't look credible enough yet">We don't look credible enough yet</label>
+          </div>
+        </div>
+
+        <div class="af-field">
+          <label for="af_more">Anything else you'd like to add?</label>
+          <textarea class="af-textarea" id="af_more" name="MultiLine" maxlength="65535" placeholder="Tell us more about your business, goals, or challenges (optional)"></textarea>
+        </div>
+
+        <div class="af-field">
+          <label for="af_email">Where should I send your free PDF audit and action plan?<em>*</em></label>
+          <input class="af-input" type="email" id="af_email" name="Email" maxlength="255" placeholder="you@yourbrand.com" required>
+        </div>
+
+        <div class="af-field">
+          <label for="af_datetime">Date & Time Availability</label>
+          <input class="af-input" type="text" id="af_datetime" name="DateTime" maxlength="255" placeholder="e.g. Tuesday afternoons, or a specific date/time">
+        </div>
+
+        <div class="af-field">
+          <label for="af_timeline">When are you looking to get started?</label>
+          <select class="af-select" id="af_timeline" name="Dropdown1">
+            <option value="" selected disabled>Select one</option>
+            <option value="Immediately">Immediately</option>
+            <option value="Within a month">Within a month</option>
+            <option value="Just exploring">Just exploring</option>
+          </select>
+        </div>
+
+        <div class="af-field">
+          <label>Once your audit is ready, would you like a free call to walk through it together?<em>*</em></label>
+          <div class="af-choice-grid">
+            <label class="af-choice"><input type="radio" id="af_radio_yes" name="Radio" value="Yes, I'd like a free call" required>Yes, I'd like a free call</label>
+            <label class="af-choice"><input type="radio" name="Radio" value="No, just send the PDF" required>No, just send the PDF</label>
+          </div>
+        </div>
+
+        <button class="btn btn-primary af-submit" type="submit">Send my free audit →</button>
+      </form>
+
+      <div id="auditSuccess">
+        <div class="af-check">✓</div>
+        <h4>You're in.</h4>
+        <p>Thanks — your free digital growth audit request just landed in my inbox. Check your email for next steps, and if you opted in for a call, grab a time on the calendar link I sent.</p>
+      </div>
+
+      <iframe name="zf_hidden_frame" style="display:none" aria-hidden="true"></iframe>
+    </div>
+  </div>
+</div>
+
+<div id="galleryModal" role="dialog" aria-modal="true" aria-labelledby="galleryModalTitle">
+  <div class="modal-backdrop" data-gallery-close></div>
+  <div class="modal-panel">
+    <button class="modal-close" type="button" data-gallery-close aria-label="Close">✕</button>
+    <div class="gallery-layout">
+      <div class="gallery-media">
+        <div class="gallery-main" id="galleryMain">
+          <span class="gallery-main-ico" id="galleryMainIco">📣</span>
+          <span class="gallery-main-label" id="galleryMainLabel">Sample 1</span>
+        </div>
+        <div class="gallery-thumbs" id="galleryThumbs"></div>
+      </div>
+      <div class="gallery-info">
+        <div class="gallery-eyebrow">Sample work</div>
+        <h3 id="galleryModalTitle">Social Media Marketing</h3>
+        <p id="galleryModalDesc">Description goes here.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 // loading screen: logo fills left to right, then fades out
 (function(){
@@ -609,6 +946,289 @@ footer .copy{color:var(--muted);font-size:.88rem}
   const hide=()=>loader.classList.add('done');
   window.addEventListener('load',()=>setTimeout(hide,Math.max(0,2000-(Date.now()-t0))));
   setTimeout(hide,4200); // safety net
+})();
+
+// animated geometric hero background — large rotating low-poly wireframe
+// gems (icosahedra), faceted lines drifting slowly over a dark backdrop.
+// Original geometry generated at runtime, not traced from any reference.
+(function(){
+  const canvas=document.getElementById('heroCanvas');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const container=canvas.parentElement;
+  const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W=0,H=0,dpr=1,gems=[],raf=null;
+
+  function rand(a,b){return a+Math.random()*(b-a)}
+
+  // classic icosahedron vertices (12 verts), edges derived from nearest-neighbour
+  // distance so we don't need to hand-maintain a face table
+  function makeIcosahedron(){
+    const t=(1+Math.sqrt(5))/2;
+    const v=[
+      [-1,t,0],[1,t,0],[-1,-t,0],[1,-t,0],
+      [0,-1,t],[0,1,t],[0,-1,-t],[0,1,-t],
+      [t,0,-1],[t,0,1],[-t,0,-1],[-t,0,1]
+    ];
+    let minD=Infinity;
+    for(let i=0;i<v.length;i++)for(let j=i+1;j<v.length;j++){
+      const dx=v[i][0]-v[j][0],dy=v[i][1]-v[j][1],dz=v[i][2]-v[j][2];
+      const d=Math.sqrt(dx*dx+dy*dy+dz*dz);
+      if(d<minD)minD=d;
+    }
+    const edges=[];
+    for(let i=0;i<v.length;i++)for(let j=i+1;j<v.length;j++){
+      const dx=v[i][0]-v[j][0],dy=v[i][1]-v[j][1],dz=v[i][2]-v[j][2];
+      const d=Math.sqrt(dx*dx+dy*dy+dz*dz);
+      if(d<minD*1.05)edges.push([i,j]);
+    }
+    return{verts:v,edges};
+  }
+
+  function initGems(){
+    const geo=makeIcosahedron();
+    const short=Math.min(W,H);
+    gems=[
+      { // large gem, anchored off the top-right corner
+        ...structuredClone(geo),
+        cx:W*0.84,cy:H*0.26,scale:short*0.5,
+        rx:rand(0,Math.PI*2),ry:rand(0,Math.PI*2),rz:rand(0,Math.PI*2),
+        vrx:.0011,vry:.0016,vrz:.0005
+      },
+      { // smaller gem, anchored off the bottom-left corner
+        ...structuredClone(geo),
+        cx:W*0.08,cy:H*0.92,scale:short*0.26,
+        rx:rand(0,Math.PI*2),ry:rand(0,Math.PI*2),rz:rand(0,Math.PI*2),
+        vrx:-.0016,vry:.0021,vrz:-.0009
+      }
+    ];
+  }
+
+  function project(p,rx,ry,rz){
+    let[x,y,z]=p;
+    // rotate X
+    let cy1=Math.cos(rx),sy1=Math.sin(rx);
+    let y1=y*cy1-z*sy1, z1=y*sy1+z*cy1;
+    // rotate Y
+    let cx2=Math.cos(ry),sx2=Math.sin(ry);
+    let x2=x*cx2+z1*sx2, z2=-x*sx2+z1*cx2;
+    // rotate Z
+    let cz3=Math.cos(rz),sz3=Math.sin(rz);
+    let x3=x2*cz3-y1*sz3, y3=x2*sz3+y1*cz3;
+    const persp=420/(420+z2);
+    return{x:x3*persp,y:y3*persp,z:z2};
+  }
+
+  function drawGem(g){
+    const projected=g.verts.map(p=>project(p,g.rx,g.ry,g.rz));
+    let zMin=Infinity,zMax=-Infinity;
+    projected.forEach(p=>{if(p.z<zMin)zMin=p.z;if(p.z>zMax)zMax=p.z;});
+    const zSpan=(zMax-zMin)||1;
+    g.edges.forEach(([i,j])=>{
+      const a=projected[i],b=projected[j];
+      const depth=1-((a.z+b.z)/2-zMin)/zSpan; // nearer edges = higher alpha
+      const alpha=.12+depth*.34;
+      ctx.strokeStyle='rgba(180,196,214,'+alpha.toFixed(3)+')';
+      ctx.lineWidth=1.1;
+      ctx.beginPath();
+      ctx.moveTo(g.cx+a.x*g.scale/2,g.cy+a.y*g.scale/2);
+      ctx.lineTo(g.cx+b.x*g.scale/2,g.cy+b.y*g.scale/2);
+      ctx.stroke();
+    });
+  }
+
+  function frame(){
+    ctx.clearRect(0,0,W,H);
+    gems.forEach(g=>{
+      g.rx+=g.vrx;g.ry+=g.vry;g.rz+=g.vrz;
+      drawGem(g);
+    });
+    if(!reduceMotion)raf=requestAnimationFrame(frame);
+  }
+
+  function resize(){
+    dpr=Math.min(devicePixelRatio||1,2);
+    W=container.clientWidth;H=container.clientHeight;
+    canvas.width=Math.round(W*dpr);canvas.height=Math.round(H*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+
+  function boot(){
+    resize();initGems();
+    if(raf)cancelAnimationFrame(raf);
+    frame();
+    if(reduceMotion){gems.forEach(drawGem);} // draw one static frame
+  }
+  boot();
+  let rT;
+  addEventListener('resize',()=>{clearTimeout(rT);rT=setTimeout(boot,150)},{passive:true});
+})();
+
+// animated globe background for the "Proof beats promises" stats section —
+// a rotating wireframe globe with flight-path style arcs connecting
+// scattered points on its surface to each other, suggesting global reach
+(function(){
+  const canvas=document.getElementById('globeCanvas');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const section=canvas.parentElement;
+  const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W=0,H=0,dpr=1,cx=0,cy=0,R=0,points=[],links=[],raf=null,t0=performance.now();
+
+  function rand(a,b){return a+Math.random()*(b-a)}
+
+  function resize(){
+    dpr=Math.min(devicePixelRatio||1,2);
+    W=section.clientWidth;H=section.clientHeight;
+    canvas.width=Math.round(W*dpr);canvas.height=Math.round(H*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    cx=W*0.5;cy=H*0.48;
+    R=Math.max(130,Math.min(W,H)*0.36);
+    R=Math.min(R,340);
+  }
+
+  function initPoints(){
+    // points scattered across the globe's face (uniform over the disc)
+    const count=11;
+    points=Array.from({length:count},()=>{
+      const angle=rand(0,Math.PI*2);
+      const dist=R*Math.sqrt(rand(0.12,0.9));
+      return{
+        x:cx+Math.cos(angle)*dist,
+        y:cy+Math.sin(angle)*dist*0.92
+      };
+    });
+    // country-to-country connections — more links than points so several
+    // are always in flight; pairs are picked at random (no self-links)
+    const linkCount=14;
+    links=Array.from({length:linkCount},()=>{
+      let a=Math.floor(rand(0,points.length));
+      let b=Math.floor(rand(0,points.length));
+      while(b===a)b=Math.floor(rand(0,points.length));
+      return{
+        a,b,
+        cycle:rand(2600,4200),
+        phase:rand(0,5000)
+      };
+    });
+  }
+
+  function ellipse(rx,ry,rot,alpha){
+    ctx.save();
+    ctx.translate(cx,cy);
+    ctx.rotate(rot);
+    ctx.scale(1,ry/rx);
+    ctx.beginPath();
+    ctx.arc(0,0,rx,0,Math.PI*2);
+    ctx.restore();
+    ctx.strokeStyle='rgba(56,189,248,'+alpha+')';
+    ctx.lineWidth=1;
+    ctx.stroke();
+  }
+
+  function drawGlobe(time){
+    // outline
+    ctx.beginPath();
+    ctx.arc(cx,cy,R,0,Math.PI*2);
+    ctx.strokeStyle='rgba(56,189,248,.24)';
+    ctx.lineWidth=1.5;
+    ctx.stroke();
+
+    // rotating meridians (vertical ellipses simulating a spinning sphere)
+    const spin=time*0.00028;
+    for(let i=0;i<3;i++){
+      const phase=spin+i*(Math.PI/3);
+      const rx=Math.max(4,R*Math.abs(Math.cos(phase)));
+      ellipse(rx,R,0,.15);
+    }
+    // static latitude lines (flattened horizontal ellipses)
+    ctx.save();
+    ctx.translate(cx,cy-R*0.42);
+    ctx.beginPath();ctx.ellipse(0,0,R*0.82,R*0.22,0,0,Math.PI*2);ctx.restore();
+    ctx.strokeStyle='rgba(56,189,248,.11)';ctx.lineWidth=1;ctx.stroke();
+    ctx.save();
+    ctx.translate(cx,cy+R*0.42);
+    ctx.beginPath();ctx.ellipse(0,0,R*0.82,R*0.22,0,0,Math.PI*2);ctx.restore();
+    ctx.strokeStyle='rgba(56,189,248,.11)';ctx.lineWidth=1;ctx.stroke();
+    ctx.save();
+    ctx.translate(cx,cy);
+    ctx.beginPath();ctx.ellipse(0,0,R,R*0.30,0,0,Math.PI*2);ctx.restore();
+    ctx.strokeStyle='rgba(125,211,248,.14)';ctx.lineWidth=1;ctx.stroke();
+
+    // resting markers for every point, so the globe always reads as a
+    // network even when a given point has no active connection
+    points.forEach(p=>{
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,2,0,Math.PI*2);
+      ctx.fillStyle='rgba(56,189,248,.25)';
+      ctx.fill();
+    });
+  }
+
+  function drawLinks(time){
+    links.forEach(link=>{
+      const p0=points[link.a],p1=points[link.b];
+      if(!p0||!p1)return;
+      const t=(((time+link.phase)%link.cycle)/link.cycle);
+      const drawFrac=0.5;  // portion of cycle spent drawing out
+      const holdFrac=0.78; // portion where line stays fully visible
+
+      // arc bulges outward, away from the globe center, like a flight path
+      const mx=(p0.x+p1.x)/2,my=(p0.y+p1.y)/2;
+      const dirx=mx-cx,diry=my-cy;
+      const dlen=Math.hypot(dirx,diry)||1;
+      const chord=Math.hypot(p1.x-p0.x,p1.y-p0.y);
+      const bulge=chord*0.32;
+      const cxp=mx+(dirx/dlen)*bulge;
+      const cyp=my+(diry/dlen)*bulge;
+
+      let arcT,alpha;
+      if(t<drawFrac){ arcT=t/drawFrac; alpha=arcT; }
+      else if(t<holdFrac){ arcT=1; alpha=1; }
+      else { arcT=1; alpha=1-((t-holdFrac)/(1-holdFrac)); }
+      if(alpha<=0.02)return;
+
+      ctx.beginPath();
+      const steps=28;
+      for(let s=0;s<=steps;s++){
+        const p=(s/steps)*arcT;
+        const ix=(1-p)*(1-p)*p0.x+2*(1-p)*p*cxp+p*p*p1.x;
+        const iy=(1-p)*(1-p)*p0.y+2*(1-p)*p*cyp+p*p*p1.y;
+        if(s===0)ctx.moveTo(ix,iy);else ctx.lineTo(ix,iy);
+      }
+      ctx.strokeStyle='rgba(14,165,233,'+(0.65*alpha)+')';
+      ctx.lineWidth=2.4;
+      ctx.lineCap='round';
+      ctx.stroke();
+
+      // bright pulsing markers at both ends while the link is active
+      const pulse=0.5+0.5*Math.sin(time*0.006+link.phase);
+      [p0,p1].forEach(p=>{
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,2.4+pulse*1.8,0,Math.PI*2);
+        ctx.fillStyle='rgba(125,211,252,'+(0.75*alpha)+')';
+        ctx.fill();
+      });
+    });
+  }
+
+  function frame(now){
+    ctx.clearRect(0,0,W,H);
+    const time=now-t0;
+    drawGlobe(time);
+    drawLinks(time);
+    if(!reduceMotion)raf=requestAnimationFrame(frame);
+  }
+
+  function boot(){
+    resize();initPoints();
+    if(raf)cancelAnimationFrame(raf);
+    t0=performance.now();
+    frame(t0);
+  }
+  boot();
+  let rT;
+  addEventListener('resize',()=>{clearTimeout(rT);rT=setTimeout(boot,150)},{passive:true});
 })();
 
 // cursor glow
@@ -624,10 +1244,58 @@ const burger=document.getElementById('burger'),links=document.getElementById('na
 burger.onclick=()=>links.classList.toggle('open');
 links.querySelectorAll('a').forEach(a=>a.onclick=()=>links.classList.remove('open'));
 
-// rotating hero word
-const words=['buyers','bookings','revenue','fans'];let wi=0;
+// keep the hero headline on one line at every viewport width by
+// shrinking font-size until it fits, regardless of which rotating word is showing
+const heroH1=document.getElementById('heroH1');
+const heroLine1=document.getElementById('heroLine1');
+function fitHeroHeadline(){
+  if(!heroH1||!heroLine1)return;
+  const container=heroH1.parentElement;
+  heroH1.style.fontSize='';
+  const cs=getComputedStyle(container);
+  const avail=container.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight)-4;
+  let size=parseFloat(getComputedStyle(heroH1).fontSize);
+  let guard=60;
+  while(heroLine1.scrollWidth>avail&&size>13&&guard-->0){
+    size-=1;
+    heroH1.style.fontSize=size+'px';
+  }
+}
+addEventListener('load',fitHeroHeadline);
+let heroFitT;
+addEventListener('resize',()=>{clearTimeout(heroFitT);heroFitT=setTimeout(fitHeroHeadline,120)},{passive:true});
+
+// rotating hero word — typewriter: types out, holds, backspaces, moves to next
+const words=['buyers','bookings','revenue','fans'];
 const swap=document.getElementById('swap');
-setInterval(()=>{swap.classList.add('out');setTimeout(()=>{wi=(wi+1)%words.length;swap.textContent=words[wi];swap.classList.remove('out')},350)},2600);
+let wi=0,ci=0,deleting=false,typeT;
+function typeStep(){
+  const word=words[wi];
+  if(!deleting){
+    ci++;
+    swap.textContent=word.slice(0,ci);
+    fitHeroHeadline();
+    if(ci===word.length){
+      deleting=true;
+      typeT=setTimeout(typeStep,1500); // hold on full word
+      return;
+    }
+    typeT=setTimeout(typeStep,95+Math.random()*55);
+  }else{
+    ci--;
+    swap.textContent=word.slice(0,ci);
+    fitHeroHeadline();
+    if(ci===0){
+      deleting=false;
+      wi=(wi+1)%words.length;
+      typeT=setTimeout(typeStep,350); // pause before next word starts
+      return;
+    }
+    typeT=setTimeout(typeStep,45);
+  }
+}
+fitHeroHeadline();
+typeT=setTimeout(typeStep,900);
 
 // scroll reveal (staggered)
 const io=new IntersectionObserver(es=>es.forEach(e=>{
@@ -664,6 +1332,171 @@ const heroMedia=document.querySelector('.hero-media');
 addEventListener('scroll',()=>{
   if(scrollY<innerHeight)heroMedia.style.transform='translateY('+scrollY*.25+'px)';
 },{passive:true});
+
+// strategy call modal — native "Free Digital Growth Audit" form, no iframe embed
+(function(){
+  const modal=document.getElementById('callModal');
+  const form=document.getElementById('auditForm');
+  const success=document.getElementById('auditSuccess');
+  const hiddenFrame=document.querySelector('iframe[name="zf_hidden_frame"]');
+  let lastFocused=null;
+  let submitted=false;
+
+  function openModal(e){
+    if(e)e.preventDefault();
+    lastFocused=document.activeElement;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    const closeBtn=modal.querySelector('.modal-close');
+    if(closeBtn)closeBtn.focus();
+  }
+
+  function closeModal(){
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    if(lastFocused)lastFocused.focus();
+  }
+
+  document.querySelectorAll('[data-open-modal]').forEach(el=>{
+    el.addEventListener('click',openModal);
+  });
+
+  modal.querySelectorAll('[data-modal-close]').forEach(el=>{
+    el.addEventListener('click',closeModal);
+  });
+
+  addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&modal.classList.contains('open'))closeModal();
+  });
+
+  // show a free-text field when "Other" business type is picked
+  const otherRadio=document.getElementById('af_radio1_other');
+  const otherText=document.getElementById('af_radio1_other_text');
+  form.querySelectorAll('input[name="Radio1"]').forEach(r=>{
+    r.addEventListener('change',()=>{
+      otherText.style.display=otherRadio.checked?'block':'none';
+    });
+  });
+
+  // submit posts to a hidden iframe (keeps them on-page, no visible Zoho iframe);
+  // once the hidden iframe finishes loading the response, swap to a success state
+  hiddenFrame.addEventListener('load',()=>{
+    if(!submitted)return; // ignore the initial blank load
+    form.style.display='none';
+    success.classList.add('show');
+  });
+  form.addEventListener('submit',()=>{
+    submitted=true;
+  });
+})();
+
+// sample gallery modal — opens from "View Samples" buttons under Services
+(function(){
+  const modal=document.getElementById('galleryModal');
+  if(!modal)return;
+  const mainIco=document.getElementById('galleryMainIco');
+  const mainLabel=document.getElementById('galleryMainLabel');
+  const thumbsWrap=document.getElementById('galleryThumbs');
+  const titleEl=document.getElementById('galleryModalTitle');
+  const descEl=document.getElementById('galleryModalDesc');
+  let lastFocused=null;
+
+  // placeholder sample sets — swap the icon/label pairs for real 1:1 photos later
+  const galleries={
+    social:{
+      icon:'📣',title:'Social Media Marketing',
+      desc:"A look at recent organic and paid social work: content pillars, carousel and reel formats, and the community management cadence that turns followers into repeat buyers.",
+      samples:5
+    },
+    ecom:{
+      icon:'🛒',title:'eCommerce Management',
+      desc:"Storefront and product-page rebuilds across Shopify, Amazon and WooCommerce — merchandising, upsell flows and checkout tweaks that lift conversion without extra ad spend.",
+      samples:5
+    },
+    seo:{
+      icon:'🔍',title:'SEO & Content',
+      desc:"Ranking content and technical SEO fixes: keyword-mapped articles, on-page optimization and backlink work that compounds organic traffic month over month.",
+      samples:5
+    },
+    ppc:{
+      icon:'🎯',title:'PPC & Google Ads',
+      desc:"Campaign structures and creative from recent Google & Meta Ads accounts, judged the same way we judge them for you: cost per acquisition and return on ad spend.",
+      samples:5
+    },
+    design:{
+      icon:'✨',title:'UI/UX & Web Design',
+      desc:"Interface and website design work — from wireframes to shipped product — built to look premium and convert, not just win design awards.",
+      samples:5
+    },
+    brand:{
+      icon:'🎨',title:'Brand Identity',
+      desc:"Logo systems, brand guidelines and visual identities designed to make a business instantly recognizable across every touchpoint.",
+      samples:5
+    },
+    email:{
+      icon:'✉️',title:'Email Marketing',
+      desc:"Automated flows and campaigns — welcome series, abandoned cart, win-back — that recover revenue and keep customers coming back.",
+      samples:5
+    },
+    video:{
+      icon:'🎬',title:'Video & Content',
+      desc:"Short-form edits, reels and podcast content built to stop the scroll and carry a brand's message across platforms.",
+      samples:5
+    }
+  };
+
+  function renderGallery(key){
+    const g=galleries[key];
+    if(!g)return;
+    titleEl.textContent=g.title;
+    descEl.textContent=g.desc;
+    mainIco.textContent=g.icon;
+    mainLabel.textContent='Sample 1';
+    thumbsWrap.innerHTML='';
+    for(let i=1;i<=g.samples;i++){
+      const thumb=document.createElement('div');
+      thumb.className='gallery-thumb'+(i===1?' active':'');
+      thumb.textContent=g.icon;
+      thumb.setAttribute('role','button');
+      thumb.setAttribute('aria-label','Sample '+i);
+      thumb.addEventListener('click',()=>{
+        thumbsWrap.querySelectorAll('.gallery-thumb').forEach(t=>t.classList.remove('active'));
+        thumb.classList.add('active');
+        mainLabel.textContent='Sample '+i;
+      });
+      thumbsWrap.appendChild(thumb);
+    }
+  }
+
+  function openGallery(e){
+    const btn=e.currentTarget;
+    const key=btn.getAttribute('data-gallery');
+    renderGallery(key);
+    lastFocused=document.activeElement;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    const closeBtn=modal.querySelector('.modal-close');
+    if(closeBtn)closeBtn.focus();
+  }
+
+  function closeGallery(){
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    if(lastFocused)lastFocused.focus();
+  }
+
+  document.querySelectorAll('[data-gallery]').forEach(el=>{
+    el.addEventListener('click',openGallery);
+  });
+
+  modal.querySelectorAll('[data-gallery-close]').forEach(el=>{
+    el.addEventListener('click',closeGallery);
+  });
+
+  addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&modal.classList.contains('open'))closeGallery();
+  });
+})();
 </script>
 </body>
 </html>
