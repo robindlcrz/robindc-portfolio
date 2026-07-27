@@ -189,6 +189,21 @@ h2{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:800;letter-spacing:-.8px;line-
 .t-item .role{color:var(--violet-soft);font-size:.92rem;font-weight:600;margin-bottom:10px}
 .t-item p{color:var(--muted);max-width:640px}
 
+/* horizontal timeline layout — desktop/tablet only; mobile keeps the vertical version above */
+@media (min-width:861px){
+  .timeline{
+    padding-left:0;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+    gap:44px 26px;
+  }
+  .timeline::before{content:none}
+  .t-item{margin-bottom:0;padding-top:30px;border-top:2px solid rgba(14,165,233,.35)}
+  .t-item::before{left:50%;top:-9px;transform:translateX(-50%)}
+  .t-item .when,.t-item h3,.t-item .role{text-align:center}
+  .t-item p{text-align:center;max-width:none;margin:0 auto}
+}
+
 /* ---------- case studies ---------- */
 .cases{display:grid;gap:26px;margin-top:56px}
 .case{
@@ -418,6 +433,20 @@ footer .copy{color:var(--muted);font-size:.88rem}
   color:var(--muted);background:rgba(8,7,15,.55);padding:5px 12px;border-radius:20px;
   backdrop-filter:blur(6px);
 }
+.gallery-nav{
+  position:absolute;top:50%;transform:translateY(-50%);z-index:2;
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(8,7,15,.55);border:1px solid var(--stroke);
+  color:var(--ink);font-size:1.3rem;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(8px);
+  transition:background .2s,border-color .2s,transform .2s;
+}
+.gallery-nav:hover{background:rgba(14,165,233,.22);border-color:var(--violet)}
+.gallery-prev{left:12px}
+.gallery-next{right:12px}
+.gallery-prev:hover{transform:translateY(-50%) translateX(-2px)}
+.gallery-next:hover{transform:translateY(-50%) translateX(2px)}
 .gallery-thumbs{display:flex;gap:10px;flex-wrap:wrap}
 .gallery-thumb{
   width:64px;aspect-ratio:1/1;border-radius:10px;flex-shrink:0;cursor:pointer;
@@ -437,6 +466,7 @@ footer .copy{color:var(--muted);font-size:.88rem}
   .gallery-layout{flex-direction:column}
   .gallery-media{padding:24px 24px 0}
   .gallery-info{padding:20px 24px 28px}
+  .gallery-thumb:nth-child(n+5){display:none}
 }
 @media (max-width:600px){
   #galleryModal{padding:0}
@@ -922,8 +952,10 @@ body.modal-open{overflow:hidden}
     <div class="gallery-layout">
       <div class="gallery-media">
         <div class="gallery-main" id="galleryMain">
+          <button type="button" class="gallery-nav gallery-prev" id="galleryPrev" aria-label="Previous photo">‹</button>
           <span class="gallery-main-ico" id="galleryMainIco">📣</span>
           <span class="gallery-main-label" id="galleryMainLabel">Sample 1</span>
+          <button type="button" class="gallery-nav gallery-next" id="galleryNext" aria-label="Next photo">›</button>
         </div>
         <div class="gallery-thumbs" id="galleryThumbs"></div>
       </div>
@@ -1230,7 +1262,11 @@ addEventListener('scroll',()=>{
   const thumbsWrap=document.getElementById('galleryThumbs');
   const titleEl=document.getElementById('galleryModalTitle');
   const descEl=document.getElementById('galleryModalDesc');
+  const prevBtn=document.getElementById('galleryPrev');
+  const nextBtn=document.getElementById('galleryNext');
   let lastFocused=null;
+  let currentTotal=0;
+  let currentSample=1;
 
   // placeholder sample sets — swap the icon/label pairs for real 1:1 photos later
   const galleries={
@@ -1279,10 +1315,10 @@ addEventListener('scroll',()=>{
   function renderGallery(key){
     const g=galleries[key];
     if(!g)return;
+    currentTotal=g.samples;
     titleEl.textContent=g.title;
     descEl.textContent=g.desc;
     mainIco.textContent=g.icon;
-    mainLabel.textContent='Sample 1';
     thumbsWrap.innerHTML='';
     for(let i=1;i<=g.samples;i++){
       const thumb=document.createElement('div');
@@ -1290,13 +1326,23 @@ addEventListener('scroll',()=>{
       thumb.textContent=g.icon;
       thumb.setAttribute('role','button');
       thumb.setAttribute('aria-label','Sample '+i);
-      thumb.addEventListener('click',()=>{
-        thumbsWrap.querySelectorAll('.gallery-thumb').forEach(t=>t.classList.remove('active'));
-        thumb.classList.add('active');
-        mainLabel.textContent='Sample '+i;
-      });
+      thumb.addEventListener('click',()=>showSample(i));
       thumbsWrap.appendChild(thumb);
     }
+    showSample(1);
+  }
+
+  // moves the main preview to sample i, wrapping around at either end;
+  // shared by the thumbnail clicks and the prev/next arrow buttons
+  function showSample(i){
+    if(currentTotal<1)return;
+    if(i<1)i=currentTotal;
+    if(i>currentTotal)i=1;
+    currentSample=i;
+    mainLabel.textContent='Sample '+i;
+    thumbsWrap.querySelectorAll('.gallery-thumb').forEach((t,idx)=>{
+      t.classList.toggle('active',idx===i-1);
+    });
   }
 
   function openGallery(e){
@@ -1324,8 +1370,14 @@ addEventListener('scroll',()=>{
     el.addEventListener('click',closeGallery);
   });
 
+  if(prevBtn)prevBtn.addEventListener('click',()=>showSample(currentSample-1));
+  if(nextBtn)nextBtn.addEventListener('click',()=>showSample(currentSample+1));
+
   addEventListener('keydown',e=>{
-    if(e.key==='Escape'&&modal.classList.contains('open'))closeGallery();
+    if(!modal.classList.contains('open'))return;
+    if(e.key==='Escape')closeGallery();
+    if(e.key==='ArrowLeft')showSample(currentSample-1);
+    if(e.key==='ArrowRight')showSample(currentSample+1);
   });
 })();
 </script>
