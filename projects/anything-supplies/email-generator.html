@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Email Signature Generator — Anything Supplies &amp; SALS3</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#f4f6f8;color:#122d52;
+       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:14px}
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 20px 70px}
+  h1{font-size:22px;margin:0 0 4px;letter-spacing:-.2px}
+  .lede{color:#5c6b7a;margin:0 0 22px;line-height:20px}
+  .grid{display:grid;grid-template-columns:360px 1fr;gap:22px;align-items:start}
+  @media (max-width:900px){.grid{grid-template-columns:1fr}}
+
+  .panel{background:#fff;border:1px solid #dde4ea;border-radius:8px}
+  .form{padding:18px 20px 20px;position:sticky;top:16px}
+  .form h2,.out h2{font-size:12px;letter-spacing:.6px;text-transform:uppercase;color:#7b8a99;margin:0 0 14px}
+  .f{margin:0 0 14px}
+  .f label{display:block;font-size:12px;font-weight:600;color:#3d4c5a;margin:0 0 5px}
+  .f input[type=text],.f input[type=email],.f select{
+    width:100%;border:1px solid #c9d3dc;border-radius:5px;padding:8px 10px;font:inherit;
+    font-size:13.5px;color:#122d52;background:#fff}
+  .f input:focus,.f select:focus{outline:none;border-color:#097484;box-shadow:0 0 0 3px rgba(9,116,132,.12)}
+  .f input[readonly]{background:#f1f4f7;color:#64747f}
+  .row{display:grid;grid-template-columns:1fr 92px;gap:8px}
+  .row2{display:grid;grid-template-columns:1fr 150px;gap:8px}
+  .seg{display:flex;border:1px solid #c9d3dc;border-radius:5px;overflow:hidden}
+  .seg label{flex:1;margin:0;text-align:center;padding:8px 6px;font-size:13px;font-weight:600;
+             color:#64747f;cursor:pointer;user-select:none;background:#fff}
+  .seg label+label{border-left:1px solid #c9d3dc}
+  .seg input{display:none}
+  .seg input:checked+label{background:#097484;color:#fff}
+  .hint{font-size:11.5px;color:#8a94a0;margin:5px 0 0;line-height:16px}
+
+  .out{padding:18px 20px 20px}
+  .stage{border:1px dashed #d4dce3;border-radius:6px;padding:22px 18px;overflow-x:auto;background:#fff}
+  .sig{width:600px}
+  .acts{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:16px 0 0}
+  .btn{border:1px solid transparent;border-radius:5px;font-size:13px;font-weight:600;
+       padding:9px 16px;cursor:pointer;font-family:inherit;transition:background .15s,color .15s}
+  .primary{background:#097484;color:#fff}
+  .primary:hover{background:#0a8698}
+  .ghost{background:#fff;color:#097484;border-color:#b9d2da}
+  .ghost:hover{background:#eef6f8}
+  .btn.ok{background:#2e9e5b;color:#fff;border-color:#2e9e5b}
+  .btn.rec{box-shadow:0 0 0 3px rgba(9,116,132,.18)}
+  .which{font-size:12.5px;color:#3d4c5a;margin-left:4px;line-height:18px}
+  .which b{color:#097484}
+
+  .steps{margin:18px 0 0;padding:14px 18px;background:#f8fafb;border:1px solid #e6ecf1;border-radius:6px;
+         font-size:12.5px;line-height:19px;color:#3d4c5a}
+  .steps ol{margin:6px 0 0;padding-left:18px}
+  .steps li{margin:0 0 2px}
+  .steps strong{color:#122d52}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Email signature generator</h1>
+  <p class="lede">Fill in your details, check the preview, then copy. Office number, office addresses,
+     logo, social links and the disclaimer are fixed for everyone — you only enter what's yours.</p>
+
+  <div class="grid">
+
+    <!-- ================= FORM ================= -->
+    <div class="panel form">
+      <h2>Your details</h2>
+
+      <div class="f">
+        <label>Company</label>
+        <div class="seg">
+          <input type="radio" name="co" id="co-as" value="as" checked><label for="co-as">Anything Supplies</label>
+          <input type="radio" name="co" id="co-s3" value="s3"><label for="co-s3">SALS3</label>
+        </div>
+      </div>
+
+      <div class="f">
+        <label>Email client</label>
+        <div class="seg">
+          <input type="radio" name="cl" id="cl-gm" value="gmail" checked><label for="cl-gm">Gmail</label>
+          <input type="radio" name="cl" id="cl-ol" value="outlook"><label for="cl-ol">Outlook</label>
+        </div>
+      </div>
+
+      <div class="f">
+        <label for="name">Full name</label>
+        <input type="text" id="name" placeholder="e.g. Maria Santos" autocomplete="name">
+      </div>
+
+      <div class="f">
+        <label for="pos">Position</label>
+        <input type="text" id="pos" placeholder="e.g. Key Account Manager" autocomplete="organization-title">
+      </div>
+
+      <div class="f">
+        <label>Office number</label>
+        <div class="row">
+          <input type="text" value="+61 2 9098 2200" readonly>
+          <input type="text" id="ext" placeholder="ext." inputmode="numeric" maxlength="4">
+        </div>
+        <p class="hint">Fixed. Add your extension if you have one.</p>
+      </div>
+
+      <div class="f">
+        <label for="mob">Mobile number</label>
+        <div class="row2">
+          <input type="text" id="mob" placeholder="+63 9XX XXX XXXX" inputmode="tel" autocomplete="tel">
+          <select id="mobtag">
+            <option value="(WhatsApp / Viber)">WhatsApp / Viber</option>
+            <option value="(WhatsApp)">WhatsApp</option>
+            <option value="(Viber)">Viber</option>
+            <option value="(Mobile)">Mobile</option>
+            <option value="">No label</option>
+          </select>
+        </div>
+        <p class="hint">Include the country code. Leave blank to hide the row.</p>
+      </div>
+
+      <div class="f" style="margin-bottom:0">
+        <label for="email">Email address</label>
+        <input type="text" id="email" placeholder="you@anythingsupplies.com" autocomplete="email">
+      </div>
+    </div>
+
+    <!-- ================= PREVIEW ================= -->
+    <div class="panel out">
+      <h2>Preview</h2>
+      <div class="stage"><div class="sig" id="preview"></div></div>
+
+      <div class="acts">
+        <button class="btn primary" id="b-rich" onclick="copyRich(this)">Copy signature</button>
+        <button class="btn ghost" id="b-html" onclick="copyHtml(this)">Copy HTML</button>
+        <span class="which" id="which"></span>
+      </div>
+
+      <div class="steps" id="steps-gmail">
+        <strong>Gmail</strong>
+        <ol>
+          <li>Gear icon &rarr; <strong>See all settings</strong> &rarr; scroll to <strong>Signature</strong>.</li>
+          <li><strong>+ Create new</strong>, name it, click into the box.</li>
+          <li>Paste with <strong>Ctrl + V</strong> (Mac: Cmd + V). Never Ctrl + Shift + V &mdash; it strips the formatting.</li>
+          <li>Set <strong>both</strong> Signature defaults dropdowns to the new signature.</li>
+          <li>Scroll down, <strong>Save Changes</strong>, send a test email to robin@anythingsupplies.com.</li>
+        </ol>
+      </div>
+      <div class="steps" id="steps-outlook" style="display:none">
+        <strong>Outlook</strong>
+        <ol>
+          <li><strong>File</strong> &rarr; <strong>Options</strong> &rarr; <strong>Mail</strong> &rarr; <strong>Signatures</strong>
+              (new Outlook / web: Settings &rarr; Mail &rarr; Compose and reply).</li>
+          <li><strong>New</strong>, name it, click into the edit box.</li>
+          <li>Paste with <strong>Ctrl + V</strong>. Never Ctrl + Shift + V.</li>
+          <li>Set <strong>New messages</strong> and <strong>Replies/forwards</strong> to the new signature.</li>
+          <li><strong>OK</strong>, then send a test email to robin@anythingsupplies.com.</li>
+        </ol>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* ---------- fixed data ---------- */
+var ICON = "https://market.anythingsupplies.com/wp-content/uploads/email/";
+var OFFICE_DISP = "+61 2 9098 2200";
+var OFFICE_TEL  = "+61290982200";
+
+var BRANDS = {
+  as: {
+    name: "Anything Supplies",
+    logo: "https://market.anythingsupplies.com/wp-content/uploads/AS-W-Logo.png",
+    logoW: 132,
+    site: "https://www.anythingsupplies.com",
+    button: "https://app.anythingsupplies.com/widget/booking/iDC3saBcK8j5hb5lI1Jf",
+    privacy: "https://www.anythingsupplies.com/privacy-policy",
+    social: [
+      ["icon-website.png",   "https://www.anythingsupplies.com",            "Website"],
+      ["icon-facebook.png",  "https://www.facebook.com/anythingsupplies/",  "Facebook"],
+      ["icon-instagram.png", "https://www.instagram.com/anythingsupplies/", "Instagram"],
+      ["icon-tiktok.png",    "https://www.tiktok.com/@_anythingsupplies",   "TikTok"],
+      ["icon-linkedin.png",  "https://www.linkedin.com/company/anything-supplies",  "LinkedIn"]
+    ]
+  },
+  s3: {
+    name: "SALS3",
+    logo: "https://market.anythingsupplies.com/wp-content/uploads/SALS3.png",
+    logoW: 124,
+    site: "https://www.sals3.com",
+    button: null,
+    privacy: null,
+    social: [
+      ["icon-website.png",   "https://www.sals3.com",                               "Website"],
+      ["icon-facebook.png",  "https://www.facebook.com/sals3australia",             "Facebook"],
+      ["icon-instagram.png", "https://www.instagram.com/sals3_australia/",          "Instagram"],
+      ["icon-tiktok.png",    "https://www.tiktok.com/@sals3.australia",             "TikTok"],
+      ["icon-linkedin.png",  "https://www.linkedin.com/company/sals3", "LinkedIn"]
+    ]
+  }
+};
+
+/* Addresses are plain text, split into short spans so Gmail's address detector
+   cannot see one continuous address pattern to auto-link. */
+var ADDR_AU_HEAD = "NSW, Australia";
+var ADDR_AU = '<span>Level 1,</span> <span>1212A/31B</span> <span>Lasso Rd,</span><br><span>Gregory Hills</span> <span>NSW</span> <span>2557</span>';
+var ADDR_PH_HEAD = "Manila, Philippines";
+var ADDR_PH = '<span>8F Lepanto</span> <span>Building,</span><br><span>8747 Paseo</span> <span>de Roxas,</span> <span>Makati City</span>';
+
+/* ---------- helpers ---------- */
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function nb(s){ return esc(s).replace(/ /g, "&nbsp;"); }
+function telOf(s){ var d = String(s).replace(/[^\d+]/g, ""); return d.indexOf("+") > 0 ? d.replace(/\+/g,"") : d; }
+function val(id){ return document.getElementById(id).value.trim(); }
+function disclaimer(b){
+  var t = "This email and any attachments are confidential and intended only for the named recipient. " +
+          "If you have received it in error, please notify the sender and delete it &mdash; any use, disclosure, " +
+          "copying or distribution is prohibited. Views expressed are those of the sender and do not necessarily " +
+          "represent those of " + b.name + ". We scan outgoing mail for viruses but accept no liability for any " +
+          "damage caused by this message or its attachments.";
+  if (b.privacy) t += ' See our <a href="' + b.privacy + '" target="_blank" rel="noopener" style="color:#1472a9; text-decoration:underline;">Privacy Policy</a>.';
+  return t;
+}
+function collect(){
+  var co = document.querySelector('input[name=co]:checked').value;
+  var cl = document.querySelector('input[name=cl]:checked').value;
+  var ext = val("ext").replace(/\D/g, "");
+  var mob = val("mob");
+  return {
+    brand: BRANDS[co], co: co, client: cl,
+    name: val("name") || "Your Name",
+    pos:  val("pos")  || "Your Position",
+    odisp: OFFICE_DISP + (ext ? " ext. " + ext : ""),
+    otel:  OFFICE_TEL  + (ext ? "," + ext : ""),
+    mob: mob, mtel: telOf(mob), mtag: document.getElementById("mobtag").value,
+    email: val("email") || "you@" + (co === "as" ? "anythingsupplies.com" : "sals3.com")
+  };
+}
+
+/* ---------- Gmail markup ---------- */
+function gmail(d){
+  var b = d.brand, F = "Arial, Helvetica, sans-serif";
+  var mobile = !d.mob ? "" :
+  '        <tr>\n' +
+  '          <td width="24" valign="top" style="width:24px; padding:1px 8px 6px 0;"><img src="' + ICON + 'icon-mobile.png" width="13" height="13" alt="Mobile" style="display:block; border:0;"></td>\n' +
+  '          <td style="padding:0 0 6px 0; font-size:12px; line-height:17px; white-space:nowrap;"><a href="tel:' + d.mtel + '" style="color:#1472a9; text-decoration:none;">' + esc(d.mob) + '</a>' +
+      (d.mtag ? '<span style="color:#8a94a0; font-size:10px;">&nbsp;' + esc(d.mtag) + '</span>' : '') + '</td>\n' +
+  '        </tr>\n';
+  var button = !b.button ? "" :
+  '          <td bgcolor="#f26a21" valign="middle" style="border-radius:4px; padding:0;"><a href="' + b.button + '" target="_blank" rel="noopener" style="display:inline-block; padding:9px 14px; font-family:' + F + '; font-size:11.5px; font-weight:bold; color:#ffffff; text-decoration:none; letter-spacing:.2px; white-space:nowrap;">Book a discovery call</a></td>\n' +
+  '          <td width="14" style="width:14px; font-size:0; line-height:0;">&nbsp;</td>\n';
+  var social = b.social.map(function(s, i){
+    var pad = i === b.social.length - 1 ? "0" : "0 7px 0 0";
+    return '          <td valign="middle" style="padding:' + pad + ';"><a href="' + s[1] + '" target="_blank" rel="noopener"><img src="' + ICON + s[0] + '" width="26" height="26" alt="' + s[2] + '" style="display:block; border:0;"></a></td>';
+  }).join("\n");
+
+  return '<table cellpadding="0" cellspacing="0" border="0" width="600" style="width:600px; border-collapse:collapse; table-layout:fixed; font-family:' + F + ';">\n' +
+  '  <tr>\n' +
+  '    <td width="132" valign="middle" align="center" style="width:132px; padding:0 18px 0 0;"><a href="' + b.site + '" target="_blank" rel="noopener" style="text-decoration:none; border:0;"><img src="' + b.logo + '" width="' + b.logoW + '" alt="' + b.name + '" style="display:block; width:' + b.logoW + 'px; height:auto; border:0;"></a></td>\n' +
+  '    <td width="3" bgcolor="#097484" style="width:3px; font-size:0; line-height:0;">&nbsp;</td>\n' +
+  '    <td width="429" valign="middle" style="width:429px; padding:0 0 0 18px;">\n' +
+  '      <div style="font-size:16px; line-height:22px; color:#122d52; padding:0 0 11px 0; white-space:nowrap;"><span style="font-weight:bold; letter-spacing:.2px;">' + esc(d.name) + '</span><span style="color:#9db4c8;">&nbsp;|&nbsp;</span><span style="font-size:13px; color:#1472a9;">' + esc(d.pos) + '</span></div>\n' +
+  '      <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; font-family:' + F + ';">\n' +
+  '        <tr>\n' +
+  '          <td width="24" valign="top" style="width:24px; padding:1px 8px 6px 0;"><img src="' + ICON + 'icon-phone.png" width="14" height="14" alt="Phone" style="display:block; border:0;"></td>\n' +
+  '          <td style="padding:0 0 6px 0; font-size:12px; line-height:17px; white-space:nowrap;"><a href="tel:' + d.otel + '" style="color:#1472a9; text-decoration:none;">' + esc(d.odisp) + '</a></td>\n' +
+  '        </tr>\n' + mobile +
+  '        <tr>\n' +
+  '          <td width="24" valign="top" style="width:24px; padding:2px 8px 10px 0;"><img src="' + ICON + 'icon-email.png" width="14" height="14" alt="Email" style="display:block; border:0;"></td>\n' +
+  '          <td style="padding:0 0 10px 0; font-size:12px; line-height:17px; white-space:nowrap;"><a href="mailto:' + esc(d.email) + '" style="color:#1472a9; text-decoration:none;">' + esc(d.email) + '</a></td>\n' +
+  '        </tr>\n' +
+  '      </table>\n' +
+  '      <table cellpadding="0" cellspacing="0" border="0" width="429" style="width:429px; border-collapse:collapse; table-layout:fixed; font-family:' + F + ';">\n' +
+  '        <tr>\n' +
+  '          <td width="20" valign="top" style="width:20px; padding:1px 6px 0 0;"><img src="' + ICON + 'icon-address.png" width="12" height="12" alt="Address" style="display:block; border:0;"></td>\n' +
+  '          <td width="188" valign="top" style="width:188px; padding:0 14px 0 0; font-size:10.5px; line-height:15px; color:#555555;"><span style="color:#122d52; font-weight:bold;">' + ADDR_AU_HEAD + '</span><br>' + ADDR_AU + '</td>\n' +
+  '          <td width="20" valign="top" style="width:20px; padding:1px 6px 0 0;"><img src="' + ICON + 'icon-address.png" width="12" height="12" alt="Address" style="display:block; border:0;"></td>\n' +
+  '          <td width="181" valign="top" style="width:181px; padding:0; font-size:10.5px; line-height:15px; color:#555555;"><span style="color:#122d52; font-weight:bold;">' + ADDR_PH_HEAD + '</span><br>' + ADDR_PH + '</td>\n' +
+  '        </tr>\n' +
+  '      </table>\n' +
+  '      <table cellpadding="0" cellspacing="0" border="0" width="429" style="width:429px; border-collapse:collapse; margin:12px 0 0 0;"><tr><td height="1" bgcolor="#e2e8ee" style="height:1px; font-size:0; line-height:0; padding:0;">&nbsp;</td></tr></table>\n' +
+  '      <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; margin:12px 0 0 0;">\n' +
+  '        <tr>\n' + button + social + '\n' +
+  '        </tr>\n' +
+  '      </table>\n' +
+  '    </td>\n' +
+  '  </tr>\n' +
+  '  <tr>\n' +
+  '    <td colspan="3" style="padding:14px 0 0 0;">\n' +
+  '      <table cellpadding="0" cellspacing="0" border="0" width="600" style="width:600px; border-collapse:collapse;">\n' +
+  '        <tr><td height="1" bgcolor="#e2e8ee" style="height:1px; font-size:0; line-height:0; padding:0;">&nbsp;</td></tr>\n' +
+  '        <tr><td style="padding:9px 0 0 0; font-family:' + F + '; font-size:9px; line-height:13px; color:#9aa3ad;">' + disclaimer(b) + '</td></tr>\n' +
+  '      </table>\n' +
+  '    </td>\n' +
+  '  </tr>\n' +
+  '</table>';
+}
+
+/* ---------- Outlook markup (Word engine): spacer cells instead of padding on
+   structural columns, pt fonts, padding on the button TD, &nbsp; instead of nowrap ---------- */
+function outlook(d){
+  var b = d.brand, F = "Arial, Helvetica, sans-serif";
+  var T = "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;";
+  var LH = "mso-line-height-rule:exactly;";
+  var mobile = !d.mob ? "" :
+  '            <tr>\n' +
+  '              <td width="22" valign="top" style="width:22px; padding:0 0 5px 0;"><img src="' + ICON + 'icon-mobile.png" width="13" height="13" alt="M" style="display:block; border:0;"></td>\n' +
+  '              <td valign="top" style="padding:0 0 5px 0; font-family:' + F + '; font-size:9pt; line-height:13pt; ' + LH + '"><a href="tel:' + d.mtel + '" style="color:#1472a9; text-decoration:none;"><span style="color:#1472a9; text-decoration:none;">' + nb(d.mob) + '</span></a>' +
+      (d.mtag ? '<span style="color:#8a94a0; font-size:7.5pt;">&nbsp;&nbsp;' + esc(d.mtag) + '</span>' : '') + '</td>\n' +
+  '            </tr>\n';
+  var button = !b.button ? "" :
+  '                <td width="150" bgcolor="#f26a21" align="center" valign="middle" style="width:150px; height:32px; background-color:#f26a21; mso-padding-alt:8px 10px; padding:8px 10px; border-radius:4px; font-family:' + F + '; font-size:8.5pt; line-height:11pt; ' + LH + ' font-weight:bold;"><a href="' + b.button + '" target="_blank" rel="noopener" style="color:#ffffff; text-decoration:none;"><span style="color:#ffffff; text-decoration:none;">Book&nbsp;a&nbsp;discovery&nbsp;call</span></a></td>\n' +
+  '                <td width="14" style="width:14px; font-size:1px; line-height:1px;">&nbsp;</td>\n';
+  var social = b.social.map(function(s, i){
+    var cell = '                <td width="26" valign="middle" style="width:26px;"><a href="' + s[1] + '" target="_blank" rel="noopener"><img src="' + ICON + s[0] + '" width="26" height="26" alt="' + s[2] + '" style="display:block; border:0;"></a></td>';
+    if (i < b.social.length - 1) cell += '\n                <td width="7" style="width:7px; font-size:1px; line-height:1px;">&nbsp;</td>';
+    return cell;
+  }).join("\n");
+
+  return '<table cellpadding="0" cellspacing="0" border="0" width="600" style="width:600px; ' + T + ' font-family:' + F + ';">\n' +
+  '  <tr>\n' +
+  '    <td width="132" valign="middle" align="center" style="width:132px;"><a href="' + b.site + '" target="_blank" rel="noopener" style="text-decoration:none; border:0;"><img src="' + b.logo + '" width="' + b.logoW + '" alt="' + b.name + '" style="display:block; width:' + b.logoW + 'px; height:auto; border:0;"></a></td>\n' +
+  '    <td width="18" style="width:18px; font-size:1px; line-height:1px;">&nbsp;</td>\n' +
+  '    <td width="3" bgcolor="#097484" style="width:3px; font-size:1px; line-height:1px;">&nbsp;</td>\n' +
+  '    <td width="18" style="width:18px; font-size:1px; line-height:1px;">&nbsp;</td>\n' +
+  '    <td width="429" valign="middle" style="width:429px;">\n' +
+  '      <table cellpadding="0" cellspacing="0" border="0" width="429" style="width:429px; ' + T + '">\n' +
+  '        <tr><td style="padding:0 0 9px 0; font-family:' + F + '; font-size:12pt; line-height:16pt; ' + LH + ' color:#122d52;"><span style="font-weight:bold;">' + nb(d.name) + '</span><span style="color:#9db4c8;">&nbsp; |&nbsp; </span><span style="font-size:10pt; color:#1472a9;">' + nb(d.pos) + '</span></td></tr>\n' +
+  '        <tr><td style="padding:0;">\n' +
+  '          <table cellpadding="0" cellspacing="0" border="0" style="' + T + '">\n' +
+  '            <tr>\n' +
+  '              <td width="22" valign="top" style="width:22px; padding:0 0 5px 0;"><img src="' + ICON + 'icon-phone.png" width="14" height="14" alt="T" style="display:block; border:0;"></td>\n' +
+  '              <td valign="top" style="padding:0 0 5px 0; font-family:' + F + '; font-size:9pt; line-height:13pt; ' + LH + '"><a href="tel:' + d.otel + '" style="color:#1472a9; text-decoration:none;"><span style="color:#1472a9; text-decoration:none;">' + nb(d.odisp) + '</span></a></td>\n' +
+  '            </tr>\n' + mobile +
+  '            <tr>\n' +
+  '              <td width="22" valign="top" style="width:22px; padding:1px 0 9px 0;"><img src="' + ICON + 'icon-email.png" width="14" height="14" alt="E" style="display:block; border:0;"></td>\n' +
+  '              <td valign="top" style="padding:0 0 9px 0; font-family:' + F + '; font-size:9pt; line-height:13pt; ' + LH + '"><a href="mailto:' + esc(d.email) + '" style="color:#1472a9; text-decoration:none;"><span style="color:#1472a9; text-decoration:none;">' + esc(d.email) + '</span></a></td>\n' +
+  '            </tr>\n' +
+  '          </table>\n' +
+  '        </td></tr>\n' +
+  '        <tr><td style="padding:0;">\n' +
+  '          <table cellpadding="0" cellspacing="0" border="0" width="429" style="width:429px; ' + T + '">\n' +
+  '            <tr>\n' +
+  '              <td width="18" valign="top" style="width:18px;"><img src="' + ICON + 'icon-address.png" width="12" height="12" alt="A" style="display:block; border:0;"></td>\n' +
+  '              <td width="192" valign="top" style="width:192px; font-family:' + F + '; font-size:8pt; line-height:11.5pt; ' + LH + ' color:#555555;"><span style="color:#122d52; font-weight:bold;">' + nb(ADDR_AU_HEAD) + '</span><br>' + ADDR_AU.replace(/ /g, "&nbsp;") + '</td>\n' +
+  '              <td width="14" style="width:14px; font-size:1px; line-height:1px;">&nbsp;</td>\n' +
+  '              <td width="18" valign="top" style="width:18px;"><img src="' + ICON + 'icon-address.png" width="12" height="12" alt="A" style="display:block; border:0;"></td>\n' +
+  '              <td width="187" valign="top" style="width:187px; font-family:' + F + '; font-size:8pt; line-height:11.5pt; ' + LH + ' color:#555555;"><span style="color:#122d52; font-weight:bold;">' + nb(ADDR_PH_HEAD) + '</span><br>' + ADDR_PH.replace(/ /g, "&nbsp;") + '</td>\n' +
+  '            </tr>\n' +
+  '          </table>\n' +
+  '        </td></tr>\n' +
+  '        <tr><td style="padding:11px 0 0 0;"><table cellpadding="0" cellspacing="0" border="0" width="429" style="width:429px; ' + T + '"><tr><td height="1" bgcolor="#e2e8ee" style="height:1px; font-size:1px; line-height:1px;">&nbsp;</td></tr></table></td></tr>\n' +
+  '        <tr><td style="padding:11px 0 0 0;">\n' +
+  '          <table cellpadding="0" cellspacing="0" border="0" style="' + T + '">\n' +
+  '            <tr>\n' + button + social + '\n' +
+  '            </tr>\n' +
+  '          </table>\n' +
+  '        </td></tr>\n' +
+  '      </table>\n' +
+  '    </td>\n' +
+  '  </tr>\n' +
+  '  <tr>\n' +
+  '    <td colspan="5" style="padding:13px 0 0 0;">\n' +
+  '      <table cellpadding="0" cellspacing="0" border="0" width="600" style="width:600px; ' + T + '">\n' +
+  '        <tr><td height="1" bgcolor="#e2e8ee" style="height:1px; font-size:1px; line-height:1px;">&nbsp;</td></tr>\n' +
+  '        <tr><td width="600" style="width:600px; padding:8px 0 0 0; font-family:' + F + '; font-size:6.5pt; line-height:9.5pt; ' + LH + ' color:#9aa3ad;">' + disclaimer(b) + '</td></tr>\n' +
+  '      </table>\n' +
+  '    </td>\n' +
+  '  </tr>\n' +
+  '</table>';
+}
+
+/* ---------- render + copy ---------- */
+var CURRENT = "";
+function render(){
+  var d = collect();
+  CURRENT = d.client === "outlook" ? outlook(d) : gmail(d);
+  document.getElementById("preview").innerHTML = CURRENT;
+  document.getElementById("steps-gmail").style.display   = d.client === "gmail"   ? "" : "none";
+  document.getElementById("steps-outlook").style.display = d.client === "outlook" ? "" : "none";
+
+  /* house rule: Outlook or SALS3 -> Copy signature; Gmail + Anything Supplies -> Copy HTML */
+  var useHtml = (d.client === "gmail" && d.co === "as");
+  document.getElementById("b-rich").classList.toggle("rec", !useHtml);
+  document.getElementById("b-html").classList.toggle("rec",  useHtml);
+  document.getElementById("which").innerHTML = useHtml
+    ? 'For this setup use <b>Copy HTML</b>.'
+    : 'For this setup use <b>Copy signature</b>.';
+}
+function flash(btn, label){
+  var old = btn.textContent;
+  btn.textContent = label; btn.classList.add("ok");
+  setTimeout(function(){ btn.textContent = old; btn.classList.remove("ok"); }, 1800);
+}
+function copyRich(btn){
+  var el = document.getElementById("preview");
+  var r = document.createRange(); r.selectNodeContents(el);
+  var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+  var ok = false; try { ok = document.execCommand("copy"); } catch(e){}
+  s.removeAllRanges();
+  ok ? flash(btn, "Copied") : alert("Copy failed. Select the preview manually and press Ctrl + C.");
+}
+function copyHtml(btn){
+  var ta = document.createElement("textarea");
+  ta.value = CURRENT; ta.setAttribute("readonly", "");
+  ta.style.position = "fixed"; ta.style.top = "-1000px";
+  document.body.appendChild(ta); ta.select();
+  var ok = false; try { ok = document.execCommand("copy"); } catch(e){}
+  document.body.removeChild(ta);
+  ok ? flash(btn, "HTML copied") : alert("Copy failed.");
+}
+
+document.querySelectorAll("input, select").forEach(function(el){
+  el.addEventListener("input", render);
+  el.addEventListener("change", render);
+});
+render();
+</script>
+</body>
+</html>
