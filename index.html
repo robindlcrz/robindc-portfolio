@@ -178,7 +178,7 @@ h2{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:800;letter-spacing:-.8px;line-
 
 /* ---------- timeline ---------- */
 .timeline{margin-top:60px;position:relative;padding-left:34px}
-.timeline::before{content:'';position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--violet),rgba(14,165,233,.05))}
+.timeline::before{content:'';position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--violet),rgba(14,165,233,.35))}
 .t-item{position:relative;margin-bottom:44px}
 .t-item::before{
   content:'';position:absolute;left:-34px;top:6px;width:18px;height:18px;border-radius:50%;
@@ -188,21 +188,6 @@ h2{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:800;letter-spacing:-.8px;line-
 .t-item h3{font-size:1.35rem;margin:6px 0 4px}
 .t-item .role{color:var(--violet-soft);font-size:.92rem;font-weight:600;margin-bottom:10px}
 .t-item p{color:var(--muted);max-width:640px}
-
-/* horizontal timeline layout — desktop/tablet only; mobile keeps the vertical version above */
-@media (min-width:861px){
-  .timeline{
-    padding-left:0;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
-    gap:44px 26px;
-  }
-  .timeline::before{content:none}
-  .t-item{margin-bottom:0;padding-top:30px;border-top:2px solid rgba(14,165,233,.35)}
-  .t-item::before{left:50%;top:-9px;transform:translateX(-50%)}
-  .t-item .when,.t-item h3,.t-item .role{text-align:center}
-  .t-item p{text-align:center;max-width:none;margin:0 auto}
-}
 
 /* ---------- case studies ---------- */
 .cases{display:grid;gap:26px;margin-top:56px}
@@ -582,7 +567,7 @@ body.modal-open{overflow:hidden}
     <div class="hero-stats rv">
       <div class="chip"><b>300%</b> month-over-month growth</div>
       <div class="chip"><b>10,000+</b> creator partnerships</div>
-      <div class="chip"><b>8 years</b> across the full stack</div>
+      <div class="chip"><b>10 years</b> across the full stack</div>
     </div>
   </div>
   <div class="scroll-hint">↓</div>
@@ -730,7 +715,7 @@ body.modal-open{overflow:hidden}
 
 <section id="work">
   <p class="kicker rv">Experience</p>
-  <h2 class="rv">Eight years, every seat at the table</h2>
+  <h2 class="rv">Ten years, every seat at the table</h2>
   <p class="lede rv">Designer, director, growth marketer. I've owned the strategy and shipped the work.</p>
   <div class="timeline">
     <div class="t-item rv">
@@ -768,6 +753,12 @@ body.modal-open{overflow:hidden}
       <h3>AnthroDesk</h3>
       <div class="role">Influencer Marketer</div>
       <p>Built an influencer program spanning 10,000+ high-tier creators across North America, with an 80% close rate, while producing the product visuals and content behind five stores.</p>
+    </div>
+    <div class="t-item rv">
+      <div class="when">2016 – 2018</div>
+      <h3>Freelance</h3>
+      <div class="role">Event Videographer &amp; Photographer</div>
+      <p>Filmed and edited same-day wedding films (SDEs) with the team that piloted them: shot that day, cut in Premiere Pro and After Effects, on screen by the reception. Plus corporate, wedding and birthday photography, edited in Lightroom. All while paying my way through college.</p>
     </div>
   </div>
 </section>
